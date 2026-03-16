@@ -1,33 +1,97 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Figma tokens to Tailwind demo</title>
-    <link rel="stylesheet" href="/src/main.css" />
-  </head>
-  <body>
-    <main class="mx-auto max-w-4xl p-8">
-      <h1 class="mb-6 text-3xl font-semibold">Figma tokens to Tailwind</h1>
 
-      <section class="grid gap-4 sm:grid-cols-2">
-        <article class="rounded-2xl border border-outline bg-surface p-6 text-on-surface shadow-sm">
-          <h2 class="mb-2 text-xl font-semibold">Surface card</h2>
-          <p class="text-body-large leading-body-large">
-            This card uses generated semantic classes from token values.
-          </p>
-        </article>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Figma tokens to Tailwind showcase</title>
+  <script>
+    // Source index.html requires Vite processing. If opened as file://,
+    // redirect to the built dist page which contains compiled CSS/JS.
+    if (window.location.protocol === "file:" && !window.location.pathname.includes("/dist/")) {
+      window.location.replace("./dist/index.html");
+    }
+  </script>
+  <link rel="stylesheet" href="/src/main.css" />
+  <script type="module" src="/src/main.js"></script>
+</head>
 
-        <article class="rounded-2xl bg-primary p-6 text-on-primary shadow-sm">
-          <h2 class="mb-2 text-xl font-semibold">Primary card</h2>
-          <p class="text-body-medium leading-body-medium">
-            Token updates in JSON flow to CSS classes after rebuild.
-          </p>
-          <button class="mt-4 rounded-full border border-on-primary px-5 py-2 text-label-large font-label-large">
-            Token button
+<body>
+  <main class="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-14">
+    <header class="hero-shell rounded-3xl border p-6 sm:p-10">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <p class="badge text-label-large font-label-large">Live token pipeline</p>
+        <button id="theme-toggle" class="rounded-full border px-4 py-2 text-label-large font-label-large" type="button"
+          aria-pressed="false">
+          Switch to alt theme
+        </button>
+      </div>
+
+      <h1 class="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">
+        Figma tokens to Tailwind showcase
+      </h1>
+      <p class="mt-4 max-w-2xl text-body-large leading-body-large">
+        This page proves the pipeline from token JSON to generated Tailwind classes.
+        Edit token values, run the build, and these styles update without touching component CSS.
+      </p>
+      <div id="token-summary" class="mt-6 flex flex-wrap gap-3" aria-live="polite"></div>
+    </header>
+
+    <section>
+      <div id="swatches-grid" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+    </section>
+
+    <section class="mt-8 grid gap-5 lg:grid-cols-2">
+      <article class="card-shell rounded-3xl border p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold">Tokenized components</h2>
+        <p class="mt-3 text-body-large leading-body-large">
+          Utility classes below are generated from tokens, not handwritten values.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button class="primary-btn rounded-full px-5 py-2 text-label-large font-label-large" type="button">
+            Primary action
           </button>
-        </article>
-      </section>
-    </main>
-  </body>
+          <button class="secondary-btn rounded-full border px-5 py-2 text-label-large font-label-large" type="button">
+            Secondary
+          </button>
+        </div>
+        <label class="mt-6 block text-label-large font-label-large" for="email-input">Email</label>
+        <input id="email-input"
+          class="token-input mt-2 w-full rounded-xl border px-4 py-3 text-body-medium leading-body-medium" type="email"
+          placeholder="name@company.com" />
+      </article>
+
+      <article class="card-shell rounded-3xl border p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold">Typography scale</h2>
+        <p class="mt-3 text-body-medium leading-body-medium">
+          Sizes and line-heights also come directly from token definitions.
+        </p>
+        <div id="typography-list" class="mt-6 space-y-3" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section class="mt-8 overflow-hidden rounded-3xl border">
+      <h2 class="border-b px-6 py-4 text-2xl font-semibold">Token to utility mapping</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-170 border-collapse text-left">
+          <thead>
+            <tr class="table-head-row">
+              <th class="px-6 py-3 text-label-large font-label-large">CSS token variable</th>
+              <th class="px-6 py-3 text-label-large font-label-large">Tailwind utility</th>
+              <th class="px-6 py-3 text-label-large font-label-large">Current value</th>
+            </tr>
+          </thead>
+          <tbody id="mapping-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <noscript>
+      <p class="mt-6 rounded-2xl border p-4 text-body-medium leading-body-medium">
+        JavaScript is required to render live token discovery sections.
+      </p>
+    </noscript>
+  </main>
+</body>
+
 </html>

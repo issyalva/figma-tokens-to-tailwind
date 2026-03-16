@@ -43,6 +43,15 @@ npm run dev
 
 Open the local Vite URL and review the generated token-based classes.
 
+## Showcase behavior
+
+The showcase page is intentionally design-system-agnostic:
+
+- It discovers available CSS token variables at runtime.
+- It renders color swatches and token-to-utility mapping dynamically.
+- Typography samples are generated from discovered typography tokens.
+- Theme toggle applies a temporary color override layer to prove live token-driven updates.
+
 ## Commands
 
 ```bash
@@ -65,6 +74,21 @@ Example:
 ```bash
 TOKEN_PROFILE=material npm run tokens:build
 ```
+
+## GitHub Pages deployment
+
+This repo includes a workflow at `.github/workflows/deploy.yml` that deploys on every push to `main`.
+
+One-time repository setup:
+
+1. In GitHub, open `Settings > Pages`.
+2. Under `Build and deployment`, set `Source` to `GitHub Actions`.
+3. Push to `main` and wait for the `Deploy to GitHub Pages` workflow.
+
+Notes:
+
+- `vite.config.js` auto-sets `base` from `GITHUB_REPOSITORY` only in GitHub Actions.
+- Local development keeps the root base path (`/`) and requires no extra flags.
 
 ## Future migration notes
 
