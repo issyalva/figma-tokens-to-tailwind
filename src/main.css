@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@import '../tokens/build/tailwind.theme.css';
+@import '../tokens/build/tokens.css';
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--color-sys-light-surface);
+  color: var(--color-sys-light-onSurface);
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Figma tokens to Tailwind demo</title>
+    <link rel="stylesheet" href="/src/main.css" />
+  </head>
+  <body>
+    <main class="mx-auto max-w-4xl p-8">
+      <h1 class="mb-6 text-3xl font-semibold">Figma tokens to Tailwind</h1>
+
+      <section class="grid gap-4 sm:grid-cols-2">
+        <article class="rounded-2xl border border-outline bg-surface p-6 text-on-surface shadow-sm">
+          <h2 class="mb-2 text-xl font-semibold">Surface card</h2>
+          <p class="text-body-large leading-body-large">
+            This card uses generated semantic classes from token values.
+          </p>
+        </article>
+
+        <article class="rounded-2xl bg-primary p-6 text-on-primary shadow-sm">
+          <h2 class="mb-2 text-xl font-semibold">Primary card</h2>
+          <p class="text-body-medium leading-body-medium">
+            Token updates in JSON flow to CSS classes after rebuild.
+          </p>
+          <button class="mt-4 rounded-full border border-on-primary px-5 py-2 text-label-large font-label-large">
+            Token button
+          </button>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "color": {
+    "sys": {
+      "light": {
+        "primary": { "value": "#6750A4", "type": "color" },
+        "onPrimary": { "value": "#FFFFFF", "type": "color" },
+        "surface": { "value": "#FDF7FF", "type": "color" },
+        "onSurface": { "value": "#1D1B20", "type": "color" },
+        "outline": { "value": "#79747E", "type": "color" }
+      }
+    }
+  },
+  "typography": {
+    "body": {
+      "large": {
+        "fontSize": { "value": 16, "type": "dimension" },
+        "fontWeight": { "value": 400, "type": "number" },
+        "lineHeight": { "value": 24, "type": "dimension" }
+      },
+      "medium": {
+        "fontSize": { "value": 14, "type": "dimension" },
+        "fontWeight": { "value": 400, "type": "number" },
+        "lineHeight": { "value": 20, "type": "dimension" }
+      }
+    },
+    "label": {
+      "large": {
+        "fontSize": { "value": 14, "type": "dimension" },
+        "fontWeight": { "value": 500, "type": "number" },
+        "lineHeight": { "value": 20, "type": "dimension" }
+      }
+    }
+  }
+}
