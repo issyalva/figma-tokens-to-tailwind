@@ -74,7 +74,19 @@ main {
   border: 0;
   background: var(--showcase-primary);
   color: var(--showcase-on-primary);
-  box-shadow: 0 4px 14px color-mix(in srgb, var(--showcase-primary) 35%, transparent);
+  box-shadow: 0 4px 14px
+    color-mix(in srgb, var(--showcase-primary) 35%, transparent);
+  transition:
+    transform 120ms ease,
+    background-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.primary-btn:hover,
+.primary-btn:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--showcase-primary) 88%, black);
+  box-shadow: var(--shadow-elevation-2, 0 8px 18px rgb(0 0 0 / 0.12));
 }
 
 .secondary-btn,
@@ -87,6 +99,38 @@ main {
 .secondary-btn {
   background: color-mix(in srgb, var(--showcase-primary) 8%, #ffffff);
   color: var(--showcase-on-surface);
+  transition:
+    transform 120ms ease,
+    background-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.secondary-btn:hover,
+.secondary-btn:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--showcase-primary) 14%, #ffffff);
+  box-shadow: var(--shadow-elevation-1, 0 4px 10px rgb(0 0 0 / 0.1));
+}
+
+.btn-size-sm {
+  padding: 0.35rem 0.8rem;
+  font-size: var(--font-size-label-small, 0.6875rem);
+  line-height: var(--line-height-label-small, 1rem);
+  font-weight: var(--font-weight-label-small, 500);
+}
+
+.btn-size-md {
+  padding: 0.45rem 1rem;
+  font-size: var(--font-size-label-medium, 0.75rem);
+  line-height: var(--line-height-label-medium, 1rem);
+  font-weight: var(--font-weight-label-medium, 500);
+}
+
+.btn-size-lg {
+  padding: 0.55rem 1.2rem;
+  font-size: var(--font-size-label-large, 0.875rem);
+  line-height: var(--line-height-label-large, 1.25rem);
+  font-weight: var(--font-weight-label-large, 500);
 }
 
 #theme-toggle {
@@ -97,12 +141,98 @@ main {
 .token-input {
   background: color-mix(in srgb, var(--showcase-primary) 4%, #ffffff);
   color: var(--showcase-on-surface);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--showcase-primary) 22%, #d0d5dd);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--showcase-primary) 22%, #d0d5dd);
 }
 
 .token-input:focus {
-  outline: 2px solid color-mix(in srgb, var(--showcase-primary) 45%, transparent);
+  outline: 2px solid
+    color-mix(in srgb, var(--showcase-primary) 45%, transparent);
   outline-offset: 1px;
+}
+
+.demo-card-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.demo-card {
+  background: color-mix(in srgb, var(--showcase-primary) 4%, #ffffff);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--showcase-primary) 10%, #e4e7ec);
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background-color 140ms ease;
+}
+
+.demo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevation-2, 0 8px 18px rgb(0 0 0 / 0.12));
+  background: color-mix(in srgb, var(--showcase-primary) 7%, #ffffff);
+}
+
+.demo-link {
+  color: var(--showcase-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color 120ms ease,
+    color 120ms ease;
+}
+
+.demo-link:hover,
+.demo-link:focus-visible {
+  border-bottom-color: var(--showcase-primary);
+  color: color-mix(in srgb, var(--showcase-primary) 76%, black);
+}
+
+.demo-chip {
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  background: color-mix(in srgb, var(--showcase-primary) 16%, #ffffff);
+  color: color-mix(in srgb, var(--showcase-primary) 72%, #0f172a);
+}
+
+.demo-ghost-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  background: color-mix(in srgb, var(--showcase-primary) 10%, #ffffff);
+  color: var(--showcase-on-surface);
+  transition:
+    background-color 120ms ease,
+    transform 120ms ease;
+}
+
+.demo-ghost-btn:hover,
+.demo-ghost-btn:focus-visible {
+  background: color-mix(in srgb, var(--showcase-primary) 18%, #ffffff);
+  transform: translateY(-1px);
+}
+
+.demo-table {
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--showcase-primary) 10%, #e4e7ec);
+  overflow: hidden;
+}
+
+.demo-row {
+  padding: 0.85rem 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--showcase-primary) 8%, #e4e7ec);
+  transition: background-color 120ms ease;
+}
+
+.demo-row:first-child {
+  border-top: 0;
+}
+
+.demo-row:hover,
+.demo-row:focus-visible {
+  background: color-mix(in srgb, var(--showcase-primary) 8%, #ffffff);
+  outline: none;
 }
 
 .table-head-row {
@@ -131,26 +261,28 @@ main {
   background: rgb(255 255 255 / 0.15);
 }
 
-.typography-style {
-  background: color-mix(in srgb, var(--showcase-primary) 3%, #ffffff);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--showcase-primary) 10%, #e4e7ec);
+.typography-row {
+  background: transparent;
 }
 
 .elevation-card {
-  background: #ffffff;
+  background: color-mix(in srgb, var(--showcase-primary) 3%, #ffffff);
   min-height: 8.5rem;
 }
 
-.shadow-probe {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  pointer-events: none;
+.elevation-sample {
+  height: 4.25rem;
+  background: #ffffff;
 }
 
 @media (max-width: 640px) {
   .hero-shell {
     box-shadow: 0 8px 20px rgb(29 27 32 / 0.06);
+  }
+}
+
+@media (min-width: 720px) {
+  .demo-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

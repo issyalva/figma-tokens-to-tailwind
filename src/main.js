@@ -215,7 +215,7 @@ function renderTypography(typographyVars) {
       const displayName = formatTypographyName(name);
 
       return `
-        <article class="typography-style rounded-2xl p-5">
+        <div class="typography-row py-4">
           <p class="text-body-large leading-body-large" style="font-size:${escapeHtml(fontSize)}; line-height:${escapeHtml(lineHeight)}; font-weight:${escapeHtml(fontWeight)}; letter-spacing:${escapeHtml(letterSpacing)};">
             ${escapeHtml(displayName)}
           </p>
@@ -225,7 +225,7 @@ function renderTypography(typographyVars) {
           <p class="mt-3 text-body-medium leading-body-medium">
             Size ${escapeHtml(fontSize)} · Line height ${escapeHtml(lineHeight)} · Weight ${escapeHtml(fontWeight)} · Letter spacing ${escapeHtml(letterSpacing)}
           </p>
-        </article>
+        </div>
       `;
     })
     .join("");
@@ -251,12 +251,12 @@ function renderLetterSpacing(letterSpacingVars) {
       const key = token.name.replace(/^--letter-spacing-/, "");
       const utility = `tracking-${key}`;
       return `
-        <article class="typography-style rounded-2xl p-5">
+        <div class="typography-row py-4">
           <p class="text-body-medium leading-body-medium" style="letter-spacing:${escapeHtml(token.value)};">
             ${TYPOGRAPHY_SAMPLE_TEXT}
           </p>
           <p class="mt-2 text-body-medium leading-body-medium">${escapeHtml(utility)} - ${escapeHtml(token.value)}</p>
-        </article>
+        </div>
       `;
     })
     .join("");
@@ -272,21 +272,16 @@ function getElevationLabel(key) {
     .join(" ");
 }
 
-function getComputedShadow(utilityClass) {
-  const probe = document.createElement("div");
-  probe.className = `shadow-probe ${utilityClass}`;
-  document.body.appendChild(probe);
-  const value = getComputedStyle(probe).boxShadow.trim();
-  probe.remove();
-  return value;
-}
-
 function getElevationSamples() {
   return ELEVATION_KEYS.map((key) => {
+    const variable = `--shadow-${key}`;
     const utility = `shadow-${key}`;
-    const value = getComputedShadow(utility);
+    const value = getComputedStyle(document.documentElement)
+      .getPropertyValue(variable)
+      .trim();
     return {
       key,
+      variable,
       label: getElevationLabel(key),
       utility,
       value,
@@ -300,16 +295,17 @@ function renderElevation(elevationSamples) {
 
   if (elevationSamples.length === 0) {
     grid.innerHTML =
-      '<p class="text-body-medium leading-body-medium">No elevation utilities resolved. Confirm token build and Tailwind theme output.</p>';
+      '<p class="text-body-medium leading-body-medium">No elevation tokens found.</p>';
     return;
   }
 
   grid.innerHTML = elevationSamples
     .map((sample) => {
       return `
-        <article class="elevation-card rounded-2xl p-5 ${escapeHtml(sample.utility)}">
-          <p class="text-label-large font-label-large">${escapeHtml(sample.label)}</p>
-          <p class="mt-2 text-body-medium leading-body-medium">${escapeHtml(sample.utility)}</p>
+        <article class="elevation-card swatch rounded-2xl p-5">
+          <div class="elevation-sample rounded-xl" style="box-shadow:${escapeHtml(sample.value)};"></div>
+          <p class="mt-4 text-label-large font-label-large">${escapeHtml(sample.label)}</p>
+          <p class="mt-1 text-body-medium leading-body-medium">${escapeHtml(sample.variable)}</p>
           <p class="mt-2 text-body-medium leading-body-medium">${escapeHtml(sample.value)}</p>
         </article>
       `;
@@ -350,7 +346,7 @@ function renderMapping(colorVars, typographyVars, elevationSamples) {
   });
 
   const shadowRows = elevationSamples.map((sample) => ({
-    token: `--shadow-${sample.key}`,
+    token: sample.variable,
     utility: sample.utility,
     value: sample.value,
   }));
