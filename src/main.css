@@ -6,31 +6,31 @@
 :root {
   color-scheme: light;
   --showcase-primary: var(
-    --color-sys-light-primary,
-    var(--color-primary, #0f766e)
+    --color-m3-sys-light-primary,
+    var(--color-sys-light-primary, #6750a4)
   );
   --showcase-on-primary: var(
-    --color-sys-light-onprimary,
-    var(--color-onprimary, #ffffff)
+    --color-m3-sys-light-on-primary,
+    var(--color-sys-light-onprimary, #ffffff)
   );
   --showcase-surface: var(
-    --color-sys-light-surface,
-    var(--color-surface, #f7fafc)
+    --color-m3-sys-light-surface,
+    var(--color-sys-light-surface, #fef7ff)
   );
   --showcase-on-surface: var(
-    --color-sys-light-onsurface,
-    var(--color-onsurface, #1f2937)
+    --color-m3-sys-light-on-surface,
+    var(--color-sys-light-onsurface, #1d1b20)
   );
   --showcase-outline: var(
-    --color-sys-light-outline,
-    var(--color-outline, #8b96ab)
+    --color-m3-sys-light-outline,
+    var(--color-sys-light-outline, #79747e)
   );
 }
 
 body {
   margin: 0;
   font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-  background: var(--showcase-surface);
+  background: #ffffff;
   color: var(--showcase-on-surface);
 }
 
@@ -45,67 +45,64 @@ main {
 }
 
 .hero-shell {
-  border-color: var(--showcase-outline);
   color: var(--showcase-on-surface);
-  background:
-    radial-gradient(
-      circle at 90% 10%,
-      color-mix(in srgb, var(--showcase-primary) 35%, transparent),
-      transparent 38%
-    ),
-    linear-gradient(
-      145deg,
-      rgb(255 255 255 / 0.9),
-      color-mix(in srgb, var(--showcase-primary) 7%, white)
-    );
-  box-shadow: 0 30px 70px rgb(29 27 32 / 0.12);
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgb(29 27 32 / 0.07);
 }
 
 .card-shell {
-  border-color: var(--showcase-outline);
-  background: color-mix(in srgb, var(--showcase-surface) 94%, white);
-  box-shadow: 0 12px 28px rgb(29 27 32 / 0.08);
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgb(29 27 32 / 0.06);
 }
 
 .swatch {
-  border-color: var(--showcase-outline);
-  box-shadow: 0 10px 24px rgb(29 27 32 / 0.07);
+  box-shadow: 0 8px 20px rgb(29 27 32 / 0.08);
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  border: 1px solid var(--showcase-outline);
+  border: 0;
   padding: 0.4rem 0.85rem;
   letter-spacing: 0.01em;
   text-transform: uppercase;
+  background: color-mix(in srgb, var(--showcase-primary) 12%, #ffffff);
 }
 
 .primary-btn {
-  border: 1px solid color-mix(in srgb, var(--showcase-primary) 65%, black);
+  border: 0;
   background: var(--showcase-primary);
   color: var(--showcase-on-primary);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--showcase-primary) 35%, transparent);
 }
 
 .secondary-btn,
 #theme-toggle,
 .token-input,
-.token-pill,
-.swatch,
-section.rounded-3xl,
-section.rounded-3xl h2 {
-  border-color: var(--showcase-outline);
+.token-pill {
+  border: 0;
 }
 
 .secondary-btn {
-  background: color-mix(in srgb, var(--showcase-surface) 96%, white);
+  background: color-mix(in srgb, var(--showcase-primary) 8%, #ffffff);
+  color: var(--showcase-on-surface);
+}
+
+#theme-toggle {
+  background: color-mix(in srgb, var(--showcase-primary) 6%, #ffffff);
   color: var(--showcase-on-surface);
 }
 
 .token-input {
-  background: var(--showcase-surface);
+  background: color-mix(in srgb, var(--showcase-primary) 4%, #ffffff);
   color: var(--showcase-on-surface);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--showcase-primary) 22%, #d0d5dd);
+}
+
+.token-input:focus {
+  outline: 2px solid color-mix(in srgb, var(--showcase-primary) 45%, transparent);
+  outline-offset: 1px;
 }
 
 .table-head-row {
@@ -114,20 +111,15 @@ section.rounded-3xl h2 {
 }
 
 .token-row {
-  border-top: 1px solid var(--showcase-outline);
+  border-top: 1px solid color-mix(in srgb, var(--showcase-primary) 10%, #d0d5dd);
 }
 
 .token-pill {
   display: inline-flex;
   align-items: center;
-  border: 1px solid;
   border-radius: 999px;
   padding: 0.3rem 0.75rem;
-  background: color-mix(
-    in srgb,
-    var(--showcase-primary) 8%,
-    var(--showcase-surface)
-  );
+  background: color-mix(in srgb, var(--showcase-primary) 10%, #ffffff);
 }
 
 .swatch-chip {
@@ -135,22 +127,30 @@ section.rounded-3xl h2 {
   align-items: center;
   border-radius: 999px;
   padding: 0.2rem 0.5rem;
-  border: 1px solid color-mix(in srgb, var(--showcase-outline) 75%, white);
+  border: 0;
   background: rgb(255 255 255 / 0.15);
+}
+
+.typography-style {
+  background: color-mix(in srgb, var(--showcase-primary) 3%, #ffffff);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--showcase-primary) 10%, #e4e7ec);
+}
+
+.elevation-card {
+  background: #ffffff;
+  min-height: 8.5rem;
+}
+
+.shadow-probe {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 @media (max-width: 640px) {
   .hero-shell {
-    background:
-      radial-gradient(
-        circle at 95% 0%,
-        color-mix(in srgb, var(--showcase-primary) 30%, transparent),
-        transparent 45%
-      ),
-      linear-gradient(
-        160deg,
-        rgb(255 255 255 / 0.95),
-        color-mix(in srgb, var(--showcase-primary) 10%, white)
-      );
+    box-shadow: 0 8px 20px rgb(29 27 32 / 0.06);
   }
 }

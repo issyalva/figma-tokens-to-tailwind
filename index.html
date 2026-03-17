@@ -18,10 +18,10 @@
 
 <body>
   <main class="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-14">
-    <header class="hero-shell rounded-3xl border p-6 sm:p-10">
+    <header class="hero-shell rounded-3xl p-6 sm:p-10">
       <div class="flex flex-wrap items-center justify-between gap-4">
         <p class="badge text-label-large font-label-large">Live token pipeline</p>
-        <button id="theme-toggle" class="rounded-full border px-4 py-2 text-label-large font-label-large" type="button"
+        <button id="theme-toggle" class="rounded-full px-4 py-2 text-label-large font-label-large" type="button"
           aria-pressed="false">
           Switch to alt theme
         </button>
@@ -37,43 +37,88 @@
       <div id="token-summary" class="mt-6 flex flex-wrap gap-3" aria-live="polite"></div>
     </header>
 
-    <section>
-      <div id="swatches-grid" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
-    </section>
-
     <section class="mt-8 grid gap-5 lg:grid-cols-2">
-      <article class="card-shell rounded-3xl border p-6 sm:p-8">
-        <h2 class="text-2xl font-semibold">Tokenized components</h2>
+      <article class="card-shell rounded-3xl p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold">Component examples</h2>
         <p class="mt-3 text-body-large leading-body-large">
-          Utility classes below are generated from tokens, not handwritten values.
+          Form controls and actions styled by token variables.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
           <button class="primary-btn rounded-full px-5 py-2 text-label-large font-label-large" type="button">
             Primary action
           </button>
-          <button class="secondary-btn rounded-full border px-5 py-2 text-label-large font-label-large" type="button">
+          <button class="secondary-btn rounded-full px-5 py-2 text-label-large font-label-large" type="button">
             Secondary
           </button>
         </div>
-        <label class="mt-6 block text-label-large font-label-large" for="email-input">Email</label>
-        <input id="email-input"
-          class="token-input mt-2 w-full rounded-xl border px-4 py-3 text-body-medium leading-body-medium" type="email"
-          placeholder="name@company.com" />
+        <form class="mt-6 grid gap-4" action="#" method="post">
+          <div>
+            <label class="block text-label-large font-label-large" for="name-input">Full name</label>
+            <input id="name-input"
+              class="token-input mt-2 w-full rounded-xl px-4 py-3 text-body-medium leading-body-medium" type="text"
+              placeholder="Jane Smith" />
+          </div>
+          <div>
+            <label class="block text-label-large font-label-large" for="email-input">Email</label>
+            <input id="email-input"
+              class="token-input mt-2 w-full rounded-xl px-4 py-3 text-body-medium leading-body-medium" type="email"
+              placeholder="name@company.com" />
+          </div>
+          <div>
+            <label class="block text-label-large font-label-large" for="role-select">Role</label>
+            <select id="role-select"
+              class="token-input mt-2 w-full rounded-xl px-4 py-3 text-body-medium leading-body-medium">
+              <option>Product Designer</option>
+              <option>Frontend Engineer</option>
+              <option>Design System Lead</option>
+            </select>
+          </div>
+        </form>
       </article>
 
-      <article class="card-shell rounded-3xl border p-6 sm:p-8">
-        <h2 class="text-2xl font-semibold">Typography scale</h2>
+      <article class="card-shell rounded-3xl p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold">Elevation</h2>
         <p class="mt-3 text-body-medium leading-body-medium">
-          Sizes and line-heights also come directly from token definitions.
+          <code>shadow-elevation-*</code> from composed <code>custom-shadow</code> tokens.
         </p>
-        <div id="typography-list" class="mt-6 space-y-3" aria-live="polite"></div>
+        <div id="elevation-grid" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
       </article>
     </section>
 
-    <section class="mt-8 overflow-hidden rounded-3xl border">
-      <h2 class="border-b px-6 py-4 text-2xl font-semibold">Token to utility mapping</h2>
+    <section class="mt-8">
+      <article class="card-shell rounded-3xl p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold">Typography scale</h2>
+        <p class="mt-3 text-body-medium leading-body-medium">
+          Each style name is rendered with its own token values.
+        </p>
+        <div id="typography-list" class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section class="mt-8">
+      <article class="card-shell rounded-3xl p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold">Letter spacing</h2>
+        <p class="mt-3 text-body-medium leading-body-medium">
+          <code>tracking-*</code> utilities from <code>--letter-spacing-*</code> tokens.
+        </p>
+        <div id="letter-spacing-list" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section class="mt-8">
+      <article class="card-shell rounded-3xl p-6 sm:p-8">
+        <h2 class="text-2xl font-semibold">Color swatches</h2>
+        <p class="mt-3 text-body-medium leading-body-medium">
+          Full token palette from <code>--color-*</code> variables.
+        </p>
+        <div id="swatches-grid" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section class="mt-8 overflow-hidden rounded-3xl">
+      <h2 class="px-6 py-4 text-2xl font-semibold">Token to utility mapping</h2>
       <div class="overflow-x-auto">
-        <table class="w-full min-w-170 border-collapse text-left">
+        <table class="w-full min-w-170 text-left">
           <thead>
             <tr class="table-head-row">
               <th class="px-6 py-3 text-label-large font-label-large">CSS token variable</th>
@@ -87,7 +132,7 @@
     </section>
 
     <noscript>
-      <p class="mt-6 rounded-2xl border p-4 text-body-medium leading-body-medium">
+      <p class="mt-6 rounded-2xl p-4 text-body-medium leading-body-medium">
         JavaScript is required to render live token discovery sections.
       </p>
     </noscript>
