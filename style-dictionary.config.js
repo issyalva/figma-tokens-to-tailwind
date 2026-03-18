@@ -3,12 +3,19 @@ import StyleDictionary from "style-dictionary";
 const BASE_FONT_SIZE_PX = 16;
 const TOKEN_PROFILE = process.env.TOKEN_PROFILE || "generic";
 
-// Design-system namespace segments to strip from keys (e.g. "m3" in M3 tokens)
+// Namespace segments dropped from generated utility keys.
 const STRIP_SEGMENTS = new Set(["m3"]);
+const SKIP_TYPOGRAPHY_PROPS = new Set([
+  "textDecoration",
+  "fontStyle",
+  "fontStretch",
+  "textCase",
+  "paragraphSpacing",
+  "paragraphIndent",
+  "fontFamily",
+]);
 
 function sanitizeCssName(str) {
-  // Lowercase first, then replace whitespace with hyphens, then strip
-  // any remaining characters that are not valid in CSS custom property names.
   return str
     .toLowerCase()
     .replace(/\s+/g, "-")
@@ -16,7 +23,7 @@ function sanitizeCssName(str) {
 }
 
 function normalizeColorKey(path) {
-  const joined = path.map(sanitizeCssName).join("-").toLowerCase();
+  const joined = path.map(sanitizeCssName).join("-");
 
   if (TOKEN_PROFILE === "material") {
     return joined
@@ -42,19 +49,31 @@ function getTypographyKey(path) {
     .toLowerCase();
 }
 
-// Compose a CSS box-shadow string from a custom-shadow token value object
+function isScalarToken(token) {
+  return typeof token.value !== "object" || token.value === null;
+}
+
+function appendSection(css, title, rows) {
+  if (rows.length === 0) return css;
+  let next = `${css}  /* ${title} */\n`;
+  rows.forEach((row) => {
+    next += `${row}\n`;
+  });
+  next += "\n";
+  return next;
+}
+
 function shadowToCss(v) {
   return `${v.offsetX}px ${v.offsetY}px ${v.radius}px ${v.spread}px ${v.color}`;
 }
 
-// Group custom-shadow tokens by elevation mode + level → combined box-shadow string
+// Combine layered custom-shadow tokens into elevation-level CSS shadows.
 function buildShadowGroups(tokens) {
   const groups = new Map();
 
   for (const token of tokens) {
     if (token.type !== "custom-shadow" || typeof token.value !== "object")
       continue;
-    // path: ['effect', 'm3', 'elevation light' | 'elevation dark', '1'-'5', '0'|'1']
     const rawMode = token.path[2] ?? "";
     const level = token.path[3] ?? "";
     if (!level) continue;
@@ -65,6 +84,15 @@ function buildShadowGroups(tokens) {
   }
 
   return groups;
+}
+
+function shadowRows(tokens) {
+  const rows = [];
+  const shadowGroups = buildShadowGroups(tokens);
+  for (const [key, parts] of shadowGroups) {
+    rows.push(`  --shadow-${key}: ${parts.join(", ")};`);
+  }
+  return rows;
 }
 
 StyleDictionary.registerTransform({
@@ -87,7 +115,7 @@ StyleDictionary.registerTransform({
   filter: (token) => {
     if (token.type !== "dimension" || typeof token.value !== "number")
       return false;
-    // Letter spacing stays in px — converting tiny values to rem hurts readability
+    // Keep letterSpacing in px for readability.
     return token.path[token.path.length - 1] !== "letterSpacing";
   },
   transform: (token) => `${token.value / BASE_FONT_SIZE_PX}rem`,
@@ -99,124 +127,89 @@ StyleDictionary.registerTransform({
   transform: (token) => token.path.map(sanitizeCssName).join("-").toLowerCase(),
 });
 
-StyleDictionary.registerFormat({
-  name: "css/variables",
-  format: ({ dictionary }) => {
-    let css =
-      "/**\n * Generated design tokens\n * Do not edit directly\n */\n\n";
-    css += ":root {\n";
+function buildCssVariablesOutput(dictionary) {
+  let css = "/**\n * Generated design tokens\n * Do not edit directly\n */\n\n";
+  css += ":root {\n";
 
-    // Simple scalar tokens
-    dictionary.allTokens.forEach((token) => {
-      if (typeof token.value === "object" && token.value !== null) return;
-      css += `  --${token.name}: ${token.value};\n`;
-    });
+  dictionary.allTokens.forEach((token) => {
+    if (!isScalarToken(token)) return;
+    css += `  --${token.name}: ${token.value};\n`;
+  });
 
-    // Composed elevation shadows
-    const shadowGroups = buildShadowGroups(dictionary.allTokens);
-    if (shadowGroups.size > 0) {
-      css += "\n  /* Elevation shadows */\n";
-      for (const [key, parts] of shadowGroups) {
-        css += `  --shadow-${key}: ${parts.join(", ")};\n`;
-      }
+  const shadow = shadowRows(dictionary.allTokens);
+  css = appendSection(css, "Elevation shadows", shadow);
+
+  css += "}\n";
+  return css;
+}
+
+// Collect rows once, then write them in stable section order.
+function collectTailwindThemeRows(dictionary) {
+  const rows = {
+    colors: [],
+    fontSize: [],
+    fontWeight: [],
+    lineHeight: [],
+    letterSpacing: [],
+  };
+
+  dictionary.allTokens.forEach((token) => {
+    if (!isScalarToken(token)) return;
+
+    if (token.type === "color") {
+      rows.colors.push(
+        `  --color-${normalizeColorKey(token.path)}: ${token.value};`,
+      );
+      return;
     }
 
-    css += "}\n";
-    return css;
-  },
+    const prop = token.path[token.path.length - 1];
+    const key = getTypographyKey(token.path);
+    if (!key) return;
+
+    if (prop === "fontSize") {
+      rows.fontSize.push(`  --font-size-${key}: ${token.value};`);
+    } else if (prop === "fontWeight") {
+      rows.fontWeight.push(`  --font-weight-${key}: ${token.value};`);
+    } else if (prop === "lineHeight") {
+      rows.lineHeight.push(`  --line-height-${key}: ${token.value};`);
+    } else if (prop === "letterSpacing") {
+      rows.letterSpacing.push(`  --letter-spacing-${key}: ${token.value};`);
+    }
+  });
+
+  return rows;
+}
+
+function buildTailwindThemeOutput(dictionary) {
+  const rows = collectTailwindThemeRows(dictionary);
+
+  let css =
+    "/**\n * Generated Tailwind @theme tokens\n * Do not edit directly\n */\n\n@theme {\n";
+
+  css = appendSection(css, "Colors", rows.colors);
+  css = appendSection(css, "Font sizes", rows.fontSize);
+  css = appendSection(css, "Font weights", rows.fontWeight);
+  css = appendSection(css, "Line heights", rows.lineHeight);
+  css = appendSection(css, "Letter spacing", rows.letterSpacing);
+  css = appendSection(
+    css,
+    "Elevation shadows",
+    shadowRows(dictionary.allTokens),
+  );
+
+  css += "}\n";
+  return css;
+}
+
+StyleDictionary.registerFormat({
+  name: "css/variables",
+  format: ({ dictionary }) => buildCssVariablesOutput(dictionary),
 });
 
 StyleDictionary.registerFormat({
   name: "tailwind/theme",
-  format: ({ dictionary }) => {
-    const colors = [];
-    const fontSize = [];
-    const fontWeight = [];
-    const lineHeight = [];
-    const letterSpacing = [];
-
-    dictionary.allTokens.forEach((token) => {
-      if (typeof token.value === "object" && token.value !== null) return;
-
-      if (token.type === "color") {
-        colors.push({ key: normalizeColorKey(token.path), value: token.value });
-        return;
-      }
-
-      const prop = token.path[token.path.length - 1];
-
-      if (prop === "fontSize") {
-        const key = getTypographyKey(token.path);
-        if (key) fontSize.push({ key, value: token.value });
-      } else if (prop === "fontWeight") {
-        const key = getTypographyKey(token.path);
-        if (key) fontWeight.push({ key, value: token.value });
-      } else if (prop === "lineHeight") {
-        const key = getTypographyKey(token.path);
-        if (key) lineHeight.push({ key, value: token.value });
-      } else if (prop === "letterSpacing") {
-        const key = getTypographyKey(token.path);
-        if (key) letterSpacing.push({ key, value: token.value });
-      }
-    });
-
-    // Build shadow groups from custom-shadow tokens
-    const shadowGroups = buildShadowGroups(dictionary.allTokens);
-
-    let css =
-      "/**\n * Generated Tailwind @theme tokens\n * Do not edit directly\n */\n\n@theme {\n";
-
-    if (colors.length > 0) {
-      css += "  /* Colors */\n";
-      colors.forEach(({ key, value }) => {
-        css += `  --color-${key}: ${value};\n`;
-      });
-      css += "\n";
-    }
-
-    if (fontSize.length > 0) {
-      css += "  /* Font sizes */\n";
-      fontSize.forEach(({ key, value }) => {
-        css += `  --font-size-${key}: ${value};\n`;
-      });
-      css += "\n";
-    }
-
-    if (fontWeight.length > 0) {
-      css += "  /* Font weights */\n";
-      fontWeight.forEach(({ key, value }) => {
-        css += `  --font-weight-${key}: ${value};\n`;
-      });
-      css += "\n";
-    }
-
-    if (lineHeight.length > 0) {
-      css += "  /* Line heights */\n";
-      lineHeight.forEach(({ key, value }) => {
-        css += `  --line-height-${key}: ${value};\n`;
-      });
-      css += "\n";
-    }
-
-    if (letterSpacing.length > 0) {
-      css += "  /* Letter spacing */\n";
-      letterSpacing.forEach(({ key, value }) => {
-        css += `  --letter-spacing-${key}: ${value};\n`;
-      });
-      css += "\n";
-    }
-
-    if (shadowGroups.size > 0) {
-      css += "  /* Elevation shadows */\n";
-      for (const [key, parts] of shadowGroups) {
-        css += `  --shadow-${key}: ${parts.join(", ")};\n`;
-      }
-      css += "\n";
-    }
-
-    css += "}\n";
-    return css;
-  },
+  format: ({ dictionary }) => buildTailwindThemeOutput(dictionary),
 });
 
 const config = {
@@ -239,22 +232,11 @@ const config = {
           format: "tailwind/theme",
           filter: (token) => {
             if (token.type === "custom-shadow") return true;
-            if (typeof token.value === "object" && token.value !== null)
-              return false;
+            if (!isScalarToken(token)) return false;
             const isTypography = token.path.includes("typography");
-            // Skip typography properties that have no useful CSS variation
             if (isTypography) {
               const prop = token.path[token.path.length - 1];
-              const SKIP_PROPS = new Set([
-                "textDecoration",
-                "fontStyle",
-                "fontStretch",
-                "textCase",
-                "paragraphSpacing",
-                "paragraphIndent",
-                "fontFamily", // single value (Roboto), omit unless needed
-              ]);
-              if (SKIP_PROPS.has(prop)) return false;
+              if (SKIP_TYPOGRAPHY_PROPS.has(prop)) return false;
             }
             return token.type === "color" || isTypography;
           },

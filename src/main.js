@@ -41,38 +41,6 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function hexToRgb(value) {
-  const hex = value.replace("#", "").trim();
-  if (!/^[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(hex)) {
-    return null;
-  }
-
-  const normalized =
-    hex.length === 3
-      ? hex
-          .split("")
-          .map((char) => `${char}${char}`)
-          .join("")
-      : hex;
-  const int = Number.parseInt(normalized, 16);
-
-  return {
-    r: (int >> 16) & 255,
-    g: (int >> 8) & 255,
-    b: int & 255,
-  };
-}
-
-function getReadableTextColor(colorValue) {
-  const rgb = hexToRgb(colorValue);
-  if (!rgb) {
-    return "#111111";
-  }
-
-  const luminance = (0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b) / 255;
-  return luminance > 0.58 ? "#101828" : "#f8fafc";
-}
-
 function createAltColor(name, value) {
   if (
     name.includes("onsurface") ||
@@ -129,77 +97,6 @@ function renderSummary(
     `<span class="token-pill text-body-medium leading-body-medium">${elevationCount} elevation tokens</span>`,
     '<span class="token-pill text-body-medium leading-body-medium">Build source: tokens/figma-tokens.json</span>',
   ].join("");
-}
-
-const COLOR_GROUPS = [
-  { key: "ref-primary", label: "Ref · Primary" },
-  { key: "ref-secondary", label: "Ref · Secondary" },
-  { key: "ref-tertiary", label: "Ref · Tertiary" },
-  { key: "ref-error", label: "Ref · Error" },
-  { key: "ref-neutral-variant", label: "Ref · Neutral Variant" },
-  { key: "ref-neutral", label: "Ref · Neutral" },
-  { key: "sys-light-high-contrast", label: "Sys · High Contrast" },
-  { key: "sys-light-medium-contrast", label: "Sys · Medium Contrast" },
-  { key: "sys-light", label: "Sys · Light" },
-  { key: "key-colors", label: "Key Colors" },
-  { key: "", label: "Base" },
-];
-
-function getColorGroup(name) {
-  const stripped = name.replace(/^--color-m3-?/, "");
-  for (const group of COLOR_GROUPS) {
-    if (group.key === "") continue;
-    if (stripped.startsWith(group.key)) return group.label;
-  }
-  return "Base";
-}
-
-function sortSwatchByTone(a, b) {
-  // sort numerically by trailing number, falls back to alphabetical
-  const numA = Number((a.name.match(/(\d+)$/) || [])[1] ?? NaN);
-  const numB = Number((b.name.match(/(\d+)$/) || [])[1] ?? NaN);
-  if (!Number.isNaN(numA) && !Number.isNaN(numB)) return numA - numB;
-  return a.name.localeCompare(b.name);
-}
-
-function renderSwatches(colorVars) {
-  const swatchesGrid = document.querySelector("#swatches-grid");
-  if (!swatchesGrid) {
-    return;
-  }
-
-  if (colorVars.length === 0) {
-    swatchesGrid.innerHTML =
-      '<p class="text-body-medium leading-body-medium">No color tokens found.</p>';
-    return;
-  }
-
-  // Bucket tokens into groups
-  const buckets = new Map(COLOR_GROUPS.map((g) => [g.label, []]));
-  for (const token of colorVars) {
-    const label = getColorGroup(token.name);
-    if (!buckets.has(label)) buckets.set(label, []);
-    buckets.get(label).push(token);
-  }
-
-  swatchesGrid.innerHTML = COLOR_GROUPS.map(({ label }) => {
-    const tokens = (buckets.get(label) || []).sort(sortSwatchByTone);
-    if (tokens.length === 0) return "";
-
-    const chips = tokens
-      .map((token) => {
-        const shortName = token.name.replace(/^--color-m3-?/, "");
-        return `<div class="color-chip" style="background:${escapeHtml(token.value)};" title="${escapeHtml(shortName)}\n${escapeHtml(token.value)}"></div>`;
-      })
-      .join("");
-
-    return `
-      <div class="color-group-row">
-        <span class="color-group-label text-body-medium leading-body-medium">${escapeHtml(label)}</span>
-        <div class="color-strip">${chips}</div>
-      </div>
-    `;
-  }).join("");
 }
 
 function typographyScales(typographyVars) {
@@ -465,7 +362,6 @@ function bootShowcase() {
     elevationSamples.length,
     letterSpacingVars,
   );
-  renderSwatches(colorVars);
   renderTypography(typographyVars);
   renderLetterSpacing(letterSpacingVars);
   renderElevation(elevationSamples);

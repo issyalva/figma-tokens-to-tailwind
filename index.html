@@ -137,7 +137,17 @@
         <p class="mt-3 text-body-medium leading-body-medium">
           <code>shadow-elevation-*</code> from composed <code>custom-shadow</code> tokens.
         </p>
-        <div id="elevation-grid" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+
+        <h3 class="mt-6 text-xl font-semibold">All elevation tokens</h3>
+        <div id="elevation-grid" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
+
+        <h3 class="mt-8 text-xl font-semibold">Elevation scale strip</h3>
+        <p class="mt-2 text-body-medium leading-body-medium">
+          Quick side-by-side read of levels 1 through 5.
+        </p>
+        <div id="elevation-strip" class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5" aria-live="polite"></div>
+
+
       </article>
     </section>
 
@@ -165,9 +175,181 @@
       <article class="card-shell rounded-3xl p-6 sm:p-8">
         <h2 class="text-2xl font-semibold">Color swatches</h2>
         <p class="mt-3 text-body-medium leading-body-medium">
-          Full token palette from <code>--color-*</code> variables.
+          Grouped reference palettes rendered with Tailwind color utilities.
         </p>
-        <div id="swatches-grid" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-live="polite"></div>
+        <div id="swatches-grid" class="mt-6 space-y-1">
+          <div class="color-group-row">
+            <span class="color-group-label text-body-medium leading-body-medium">Ref · Primary</span>
+            <div class="color-strip">
+              <div class="color-chip bg-m3-ref-primary-primary0" title="m3-ref-primary-primary0"></div>
+              <div class="color-chip bg-m3-ref-primary-primary5" title="m3-ref-primary-primary5"></div>
+              <div class="color-chip bg-m3-ref-primary-primary10" title="m3-ref-primary-primary10"></div>
+              <div class="color-chip bg-m3-ref-primary-primary15" title="m3-ref-primary-primary15"></div>
+              <div class="color-chip bg-m3-ref-primary-primary20" title="m3-ref-primary-primary20"></div>
+              <div class="color-chip bg-m3-ref-primary-primary25" title="m3-ref-primary-primary25"></div>
+              <div class="color-chip bg-m3-ref-primary-primary30" title="m3-ref-primary-primary30"></div>
+              <div class="color-chip bg-m3-ref-primary-primary35" title="m3-ref-primary-primary35"></div>
+              <div class="color-chip bg-m3-ref-primary-primary40" title="m3-ref-primary-primary40"></div>
+              <div class="color-chip bg-m3-ref-primary-primary50" title="m3-ref-primary-primary50"></div>
+              <div class="color-chip bg-m3-ref-primary-primary60" title="m3-ref-primary-primary60"></div>
+              <div class="color-chip bg-m3-ref-primary-primary70" title="m3-ref-primary-primary70"></div>
+              <div class="color-chip bg-m3-ref-primary-primary80" title="m3-ref-primary-primary80"></div>
+              <div class="color-chip bg-m3-ref-primary-primary90" title="m3-ref-primary-primary90"></div>
+              <div class="color-chip bg-m3-ref-primary-primary95" title="m3-ref-primary-primary95"></div>
+              <div class="color-chip bg-m3-ref-primary-primary98" title="m3-ref-primary-primary98"></div>
+              <div class="color-chip bg-m3-ref-primary-primary99" title="m3-ref-primary-primary99"></div>
+              <div class="color-chip bg-m3-ref-primary-primary100" title="m3-ref-primary-primary100"></div>
+            </div>
+          </div>
+
+          <div class="color-group-row">
+            <span class="color-group-label text-body-medium leading-body-medium">Ref · Secondary</span>
+            <div class="color-strip">
+              <div class="color-chip bg-m3-ref-secondary-secondary0" title="m3-ref-secondary-secondary0"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary5" title="m3-ref-secondary-secondary5"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary10" title="m3-ref-secondary-secondary10"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary15" title="m3-ref-secondary-secondary15"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary20" title="m3-ref-secondary-secondary20"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary25" title="m3-ref-secondary-secondary25"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary30" title="m3-ref-secondary-secondary30"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary35" title="m3-ref-secondary-secondary35"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary40" title="m3-ref-secondary-secondary40"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary50" title="m3-ref-secondary-secondary50"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary60" title="m3-ref-secondary-secondary60"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary70" title="m3-ref-secondary-secondary70"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary80" title="m3-ref-secondary-secondary80"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary90" title="m3-ref-secondary-secondary90"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary95" title="m3-ref-secondary-secondary95"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary98" title="m3-ref-secondary-secondary98"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary99" title="m3-ref-secondary-secondary99"></div>
+              <div class="color-chip bg-m3-ref-secondary-secondary100" title="m3-ref-secondary-secondary100"></div>
+            </div>
+          </div>
+
+          <div class="color-group-row">
+            <span class="color-group-label text-body-medium leading-body-medium">Ref · Tertiary</span>
+            <div class="color-strip">
+              <div class="color-chip bg-m3-ref-tertiary-tertiary0" title="m3-ref-tertiary-tertiary0"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary5" title="m3-ref-tertiary-tertiary5"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary10" title="m3-ref-tertiary-tertiary10"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary15" title="m3-ref-tertiary-tertiary15"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary20" title="m3-ref-tertiary-tertiary20"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary25" title="m3-ref-tertiary-tertiary25"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary30" title="m3-ref-tertiary-tertiary30"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary35" title="m3-ref-tertiary-tertiary35"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary40" title="m3-ref-tertiary-tertiary40"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary50" title="m3-ref-tertiary-tertiary50"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary60" title="m3-ref-tertiary-tertiary60"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary70" title="m3-ref-tertiary-tertiary70"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary80" title="m3-ref-tertiary-tertiary80"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary90" title="m3-ref-tertiary-tertiary90"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary95" title="m3-ref-tertiary-tertiary95"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary98" title="m3-ref-tertiary-tertiary98"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary99" title="m3-ref-tertiary-tertiary99"></div>
+              <div class="color-chip bg-m3-ref-tertiary-tertiary100" title="m3-ref-tertiary-tertiary100"></div>
+            </div>
+          </div>
+
+          <div class="color-group-row">
+            <span class="color-group-label text-body-medium leading-body-medium">Ref · Error</span>
+            <div class="color-strip">
+              <div class="color-chip bg-m3-ref-error-error0" title="m3-ref-error-error0"></div>
+              <div class="color-chip bg-m3-ref-error-error5" title="m3-ref-error-error5"></div>
+              <div class="color-chip bg-m3-ref-error-error10" title="m3-ref-error-error10"></div>
+              <div class="color-chip bg-m3-ref-error-error15" title="m3-ref-error-error15"></div>
+              <div class="color-chip bg-m3-ref-error-error20" title="m3-ref-error-error20"></div>
+              <div class="color-chip bg-m3-ref-error-error25" title="m3-ref-error-error25"></div>
+              <div class="color-chip bg-m3-ref-error-error30" title="m3-ref-error-error30"></div>
+              <div class="color-chip bg-m3-ref-error-error35" title="m3-ref-error-error35"></div>
+              <div class="color-chip bg-m3-ref-error-error40" title="m3-ref-error-error40"></div>
+              <div class="color-chip bg-m3-ref-error-error50" title="m3-ref-error-error50"></div>
+              <div class="color-chip bg-m3-ref-error-error60" title="m3-ref-error-error60"></div>
+              <div class="color-chip bg-m3-ref-error-error70" title="m3-ref-error-error70"></div>
+              <div class="color-chip bg-m3-ref-error-error80" title="m3-ref-error-error80"></div>
+              <div class="color-chip bg-m3-ref-error-error90" title="m3-ref-error-error90"></div>
+              <div class="color-chip bg-m3-ref-error-error95" title="m3-ref-error-error95"></div>
+              <div class="color-chip bg-m3-ref-error-error98" title="m3-ref-error-error98"></div>
+              <div class="color-chip bg-m3-ref-error-error99" title="m3-ref-error-error99"></div>
+              <div class="color-chip bg-m3-ref-error-error100" title="m3-ref-error-error100"></div>
+            </div>
+          </div>
+
+          <div class="color-group-row">
+            <span class="color-group-label text-body-medium leading-body-medium">Ref · Neutral</span>
+            <div class="color-strip">
+              <div class="color-chip bg-m3-ref-neutral-neutral0" title="m3-ref-neutral-neutral0"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral4" title="m3-ref-neutral-neutral4"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral5" title="m3-ref-neutral-neutral5"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral6" title="m3-ref-neutral-neutral6"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral10" title="m3-ref-neutral-neutral10"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral12" title="m3-ref-neutral-neutral12"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral15" title="m3-ref-neutral-neutral15"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral17" title="m3-ref-neutral-neutral17"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral20" title="m3-ref-neutral-neutral20"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral22" title="m3-ref-neutral-neutral22"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral24" title="m3-ref-neutral-neutral24"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral25" title="m3-ref-neutral-neutral25"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral30" title="m3-ref-neutral-neutral30"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral35" title="m3-ref-neutral-neutral35"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral40" title="m3-ref-neutral-neutral40"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral50" title="m3-ref-neutral-neutral50"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral60" title="m3-ref-neutral-neutral60"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral70" title="m3-ref-neutral-neutral70"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral80" title="m3-ref-neutral-neutral80"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral87" title="m3-ref-neutral-neutral87"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral90" title="m3-ref-neutral-neutral90"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral92" title="m3-ref-neutral-neutral92"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral94" title="m3-ref-neutral-neutral94"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral95" title="m3-ref-neutral-neutral95"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral96" title="m3-ref-neutral-neutral96"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral98" title="m3-ref-neutral-neutral98"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral99" title="m3-ref-neutral-neutral99"></div>
+              <div class="color-chip bg-m3-ref-neutral-neutral100" title="m3-ref-neutral-neutral100"></div>
+            </div>
+          </div>
+
+          <div class="color-group-row">
+            <span class="color-group-label text-body-medium leading-body-medium">Ref · Neutral Variant</span>
+            <div class="color-strip">
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant0"
+                title="m3-ref-neutral-variant-neutral-variant0"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant5"
+                title="m3-ref-neutral-variant-neutral-variant5"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant10"
+                title="m3-ref-neutral-variant-neutral-variant10"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant15"
+                title="m3-ref-neutral-variant-neutral-variant15"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant20"
+                title="m3-ref-neutral-variant-neutral-variant20"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant25"
+                title="m3-ref-neutral-variant-neutral-variant25"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant30"
+                title="m3-ref-neutral-variant-neutral-variant30"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant35"
+                title="m3-ref-neutral-variant-neutral-variant35"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant40"
+                title="m3-ref-neutral-variant-neutral-variant40"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant50"
+                title="m3-ref-neutral-variant-neutral-variant50"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant60"
+                title="m3-ref-neutral-variant-neutral-variant60"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant70"
+                title="m3-ref-neutral-variant-neutral-variant70"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant80"
+                title="m3-ref-neutral-variant-neutral-variant80"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant90"
+                title="m3-ref-neutral-variant-neutral-variant90"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant95"
+                title="m3-ref-neutral-variant-neutral-variant95"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant98"
+                title="m3-ref-neutral-variant-neutral-variant98"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant99"
+                title="m3-ref-neutral-variant-neutral-variant99"></div>
+              <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant100"
+                title="m3-ref-neutral-variant-neutral-variant100"></div>
+            </div>
+          </div>
+        </div>
       </article>
     </section>
 
