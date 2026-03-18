@@ -131,35 +131,75 @@ function renderSummary(
   ].join("");
 }
 
+const COLOR_GROUPS = [
+  { key: "ref-primary", label: "Ref · Primary" },
+  { key: "ref-secondary", label: "Ref · Secondary" },
+  { key: "ref-tertiary", label: "Ref · Tertiary" },
+  { key: "ref-error", label: "Ref · Error" },
+  { key: "ref-neutral-variant", label: "Ref · Neutral Variant" },
+  { key: "ref-neutral", label: "Ref · Neutral" },
+  { key: "sys-light-high-contrast", label: "Sys · High Contrast" },
+  { key: "sys-light-medium-contrast", label: "Sys · Medium Contrast" },
+  { key: "sys-light", label: "Sys · Light" },
+  { key: "key-colors", label: "Key Colors" },
+  { key: "", label: "Base" },
+];
+
+function getColorGroup(name) {
+  const stripped = name.replace(/^--color-m3-?/, "");
+  for (const group of COLOR_GROUPS) {
+    if (group.key === "") continue;
+    if (stripped.startsWith(group.key)) return group.label;
+  }
+  return "Base";
+}
+
+function sortSwatchByTone(a, b) {
+  // sort numerically by trailing number, falls back to alphabetical
+  const numA = Number((a.name.match(/(\d+)$/) || [])[1] ?? NaN);
+  const numB = Number((b.name.match(/(\d+)$/) || [])[1] ?? NaN);
+  if (!Number.isNaN(numA) && !Number.isNaN(numB)) return numA - numB;
+  return a.name.localeCompare(b.name);
+}
+
 function renderSwatches(colorVars) {
   const swatchesGrid = document.querySelector("#swatches-grid");
   if (!swatchesGrid) {
     return;
   }
 
-  const swatches = [...colorVars].sort((a, b) => a.name.localeCompare(b.name));
-  if (swatches.length === 0) {
+  if (colorVars.length === 0) {
     swatchesGrid.innerHTML =
-      '<article class="swatch rounded-2xl p-5"><p class="text-body-medium leading-body-medium">No color tokens found.</p></article>';
+      '<p class="text-body-medium leading-body-medium">No color tokens found.</p>';
     return;
   }
 
-  swatchesGrid.innerHTML = swatches
-    .map((token) => {
-      const utility = token.name.replace(/^--color-/, "");
-      const textColor = getReadableTextColor(token.value);
-      return `
-        <article class="swatch rounded-2xl p-5" style="background:${escapeHtml(token.value)}; color:${textColor};">
-          <p class="text-label-large font-label-large">${escapeHtml(token.name)}</p>
-          <div class="mt-3 flex flex-wrap gap-2">
-            <span class="swatch-chip text-body-medium leading-body-medium">bg-${escapeHtml(utility)}</span>
-            <span class="swatch-chip text-body-medium leading-body-medium">text-${escapeHtml(utility)}</span>
-          </div>
-          <p class="mt-3 text-body-medium leading-body-medium">${escapeHtml(token.value)}</p>
-        </article>
-      `;
-    })
-    .join("");
+  // Bucket tokens into groups
+  const buckets = new Map(COLOR_GROUPS.map((g) => [g.label, []]));
+  for (const token of colorVars) {
+    const label = getColorGroup(token.name);
+    if (!buckets.has(label)) buckets.set(label, []);
+    buckets.get(label).push(token);
+  }
+
+  swatchesGrid.innerHTML = COLOR_GROUPS.map(({ label }) => {
+    const tokens = (buckets.get(label) || []).sort(sortSwatchByTone);
+    if (tokens.length === 0) return "";
+
+    const chips = tokens
+      .map((token) => {
+        const shortName = token.name.replace(/^--color-m3-?/, "");
+        return `<div class="color-chip" style="background:${escapeHtml(token.value)};" title="${escapeHtml(shortName)}\n${escapeHtml(token.value)}"></div>`;
+      })
+      .join("");
+
+    return `
+      <div class="color-group-row">
+        <span class="color-group-label text-body-medium leading-body-medium">${escapeHtml(label)}</span>
+        <div class="color-strip">${chips}</div>
+      </div>
+    `;
+  }).join("");
 }
 
 function typographyScales(typographyVars) {

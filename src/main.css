@@ -59,6 +59,37 @@ main {
   box-shadow: 0 8px 20px rgb(29 27 32 / 0.08);
 }
 
+.color-group-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.color-group-label {
+  flex: 0 0 10rem;
+  color: color-mix(in srgb, currentColor 60%, transparent);
+  white-space: nowrap;
+}
+
+.color-strip {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.color-chip {
+  flex: 1;
+  height: 5rem;
+  min-width: 0;
+  cursor: default;
+  transition: flex 80ms ease;
+}
+
+.color-chip:hover {
+  flex: 3;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -253,12 +284,7 @@ main {
 }
 
 .swatch-chip {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 999px;
-  padding: 0.2rem 0.5rem;
-  border: 0;
-  background: rgb(255 255 255 / 0.15);
+  display: none;
 }
 
 .typography-row {
