@@ -41,28 +41,36 @@
       <article class="card-shell rounded-3xl p-6 sm:p-8">
         <h2 class="text-2xl font-semibold">Component examples</h2>
         <p class="mt-3 text-m3-body-large leading-m3-body-large">
-          Form controls and actions styled by token variables.
+          Filled, tonal, elevated, outlined, text, and field patterns styled by token variables.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <button class="primary-btn rounded-full px-5 py-2 text-m3-label-large font-m3-label-large" type="button">
-            Primary action
+          <button class="button-filled-primary rounded-full px-5 py-2 text-m3-label-large font-m3-label-large"
+            type="button">
+            Filled button
           </button>
-          <button class="secondary-btn rounded-full px-5 py-2 text-m3-label-large font-m3-label-large" type="button">
-            Secondary
+          <button class="button-tonal-secondary rounded-full px-5 py-2 text-m3-label-large font-m3-label-large"
+            type="button">
+            Tonal button
+          </button>
+          <button class="button-elevated rounded-full px-5 py-2 text-m3-label-large font-m3-label-large" type="button">
+            Elevated button
+          </button>
+          <button class="button-outlined rounded-full px-5 py-2 text-m3-label-large font-m3-label-large" type="button">
+            Outlined button
           </button>
         </div>
 
         <div class="mt-6">
           <p class="text-m3-label-large font-m3-label-large">Button sizes</p>
           <div class="mt-3 flex flex-wrap items-end gap-3">
-            <button class="primary-btn btn-size-sm rounded-full" type="button">Primary Small</button>
-            <button class="primary-btn btn-size-md rounded-full" type="button">Primary Medium</button>
-            <button class="primary-btn btn-size-lg rounded-full" type="button">Primary Large</button>
+            <button class="button-filled-primary button-size-small rounded-full" type="button">Filled Small</button>
+            <button class="button-filled-primary button-size-medium rounded-full" type="button">Filled Medium</button>
+            <button class="button-filled-primary button-size-large rounded-full" type="button">Filled Large</button>
           </div>
           <div class="mt-3 flex flex-wrap items-end gap-3">
-            <button class="secondary-btn btn-size-sm rounded-full" type="button">Secondary Small</button>
-            <button class="secondary-btn btn-size-md rounded-full" type="button">Secondary Medium</button>
-            <button class="secondary-btn btn-size-lg rounded-full" type="button">Secondary Large</button>
+            <button class="button-tonal-secondary button-size-small rounded-full" type="button">Tonal Small</button>
+            <button class="button-tonal-secondary button-size-medium rounded-full" type="button">Tonal Medium</button>
+            <button class="button-tonal-secondary button-size-large rounded-full" type="button">Tonal Large</button>
           </div>
         </div>
 
@@ -70,19 +78,19 @@
           <div>
             <label class="block text-m3-label-large font-m3-label-large" for="name-input">Full name</label>
             <input id="name-input"
-              class="token-input mt-2 w-full rounded-xl px-4 py-3 text-m3-body-medium leading-m3-body-medium"
+              class="field-filled mt-2 w-full rounded-xl px-4 py-3 text-m3-body-medium leading-m3-body-medium"
               type="text" placeholder="Jane Smith" />
           </div>
           <div>
             <label class="block text-m3-label-large font-m3-label-large" for="email-input">Email</label>
             <input id="email-input"
-              class="token-input mt-2 w-full rounded-xl px-4 py-3 text-m3-body-medium leading-m3-body-medium"
+              class="field-filled mt-2 w-full rounded-xl px-4 py-3 text-m3-body-medium leading-m3-body-medium"
               type="email" placeholder="name@company.com" />
           </div>
           <div>
             <label class="block text-m3-label-large font-m3-label-large" for="role-select">Role</label>
             <select id="role-select"
-              class="token-input mt-2 w-full rounded-xl px-4 py-3 text-m3-body-medium leading-m3-body-medium">
+              class="field-filled mt-2 w-full rounded-xl px-4 py-3 text-m3-body-medium leading-m3-body-medium">
               <option>Product Designer</option>
               <option>Frontend Engineer</option>
               <option>Design System Lead</option>
@@ -96,36 +104,37 @@
             Interaction previews below are purely CSS-driven with hover and focus-visible styles.
           </p>
 
-          <div class="demo-card-grid mt-4">
-            <article class="demo-card rounded-2xl p-4">
-              <p class="text-m3-label-large font-m3-label-large">Feature Card</p>
+          <div class="component-example-grid mt-4">
+            <article class="card-filled rounded-2xl p-4">
+              <p class="text-m3-label-large font-m3-label-large">Filled Card</p>
               <p class="mt-2 text-m3-body-medium leading-m3-body-medium">
                 Hover raises the card using elevation tokens.
               </p>
-              <a class="demo-link mt-3 inline-flex text-m3-body-medium leading-m3-body-medium" href="#">Read details</a>
+              <a class="link-inline mt-3 inline-flex text-m3-body-medium leading-m3-body-medium" href="#">Inline
+                link</a>
             </article>
 
-            <article class="demo-card rounded-2xl p-4">
-              <p class="text-m3-label-large font-m3-label-large">Status Banner</p>
+            <article class="card-filled rounded-2xl p-4">
+              <p class="text-m3-label-large font-m3-label-large">Assist Chip</p>
               <p class="mt-2 text-m3-body-medium leading-m3-body-medium">
                 Static surface with tokenized foreground/background contrast.
               </p>
-              <span class="demo-chip mt-3 inline-flex text-m3-label-large font-m3-label-large">Synced</span>
+              <span class="chip-assist mt-3 inline-flex text-m3-label-large font-m3-label-large">Synced</span>
             </article>
 
-            <article class="demo-card rounded-2xl p-4">
-              <p class="text-m3-label-large font-m3-label-large">List Row</p>
+            <article class="card-filled rounded-2xl p-4">
+              <p class="text-m3-label-large font-m3-label-large">Text Button</p>
               <p class="mt-2 text-m3-body-medium leading-m3-body-medium">
                 Row highlight uses only :hover and :focus-visible.
               </p>
-              <button class="demo-ghost-btn mt-3 text-m3-label-large font-m3-label-large" type="button">Open</button>
+              <button class="button-text mt-3 text-m3-label-large font-m3-label-large" type="button">Open</button>
             </article>
           </div>
 
-          <div class="demo-table mt-4 rounded-2xl">
-            <div class="demo-row text-m3-body-medium leading-m3-body-medium" tabindex="0">Account settings</div>
-            <div class="demo-row text-m3-body-medium leading-m3-body-medium" tabindex="0">Design tokens export</div>
-            <div class="demo-row text-m3-body-medium leading-m3-body-medium" tabindex="0">Team access</div>
+          <div class="list-table mt-4 rounded-2xl">
+            <div class="list-row text-m3-body-medium leading-m3-body-medium" tabindex="0">Account settings</div>
+            <div class="list-row text-m3-body-medium leading-m3-body-medium" tabindex="0">Design tokens export</div>
+            <div class="list-row text-m3-body-medium leading-m3-body-medium" tabindex="0">Team access</div>
           </div>
         </div>
       </article>
