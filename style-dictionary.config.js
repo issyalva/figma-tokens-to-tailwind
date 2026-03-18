@@ -1,10 +1,6 @@
 import StyleDictionary from "style-dictionary";
 
 const BASE_FONT_SIZE_PX = 16;
-const TOKEN_PROFILE = process.env.TOKEN_PROFILE || "generic";
-
-// Namespace segments dropped from generated utility keys.
-const STRIP_SEGMENTS = new Set(["m3"]);
 const SKIP_TYPOGRAPHY_PROPS = new Set([
   "textDecoration",
   "fontStyle",
@@ -24,15 +20,6 @@ function sanitizeCssName(str) {
 
 function normalizeColorKey(path) {
   const joined = path.map(sanitizeCssName).join("-");
-
-  if (TOKEN_PROFILE === "material") {
-    return joined
-      .replace(/^color-[a-z0-9]+-sys-light-/, "")
-      .replace(/^color-[a-z0-9]+-sys-dark-/, "dark-")
-      .replace(/^color-[a-z0-9]+-/, "")
-      .replace(/^color-/, "");
-  }
-
   return joined.replace(/^color-/, "");
 }
 
@@ -44,7 +31,6 @@ function getTypographyKey(path) {
 
   return path
     .slice(typographyIndex + 1, -1)
-    .filter((s) => !STRIP_SEGMENTS.has(s.toLowerCase()))
     .join("-")
     .toLowerCase();
 }
@@ -168,13 +154,13 @@ function collectTailwindThemeRows(dictionary) {
     if (!key) return;
 
     if (prop === "fontSize") {
-      rows.fontSize.push(`  --font-size-${key}: ${token.value};`);
+      rows.fontSize.push(`  --text-${key}: ${token.value};`);
     } else if (prop === "fontWeight") {
       rows.fontWeight.push(`  --font-weight-${key}: ${token.value};`);
     } else if (prop === "lineHeight") {
-      rows.lineHeight.push(`  --line-height-${key}: ${token.value};`);
+      rows.lineHeight.push(`  --leading-${key}: ${token.value};`);
     } else if (prop === "letterSpacing") {
-      rows.letterSpacing.push(`  --letter-spacing-${key}: ${token.value};`);
+      rows.letterSpacing.push(`  --tracking-${key}: ${token.value};`);
     }
   });
 

@@ -91,81 +91,12 @@ function renderSummary(
   }
 
   summary.innerHTML = [
-    `<span class="token-pill text-body-medium leading-body-medium">${colorVars.length} color tokens</span>`,
-    `<span class="token-pill text-body-medium leading-body-medium">${typographyVars.length} typography tokens</span>`,
-    `<span class="token-pill text-body-medium leading-body-medium">${letterSpacingVars.length} letter-spacing tokens</span>`,
-    `<span class="token-pill text-body-medium leading-body-medium">${elevationCount} elevation tokens</span>`,
-    '<span class="token-pill text-body-medium leading-body-medium">Build source: tokens/figma-tokens.json</span>',
+    `<span class="token-pill text-m3-body-medium leading-m3-body-medium">${colorVars.length} color tokens</span>`,
+    `<span class="token-pill text-m3-body-medium leading-m3-body-medium">${typographyVars.length} typography tokens</span>`,
+    `<span class="token-pill text-m3-body-medium leading-m3-body-medium">${letterSpacingVars.length} letter-spacing tokens</span>`,
+    `<span class="token-pill text-m3-body-medium leading-m3-body-medium">${elevationCount} elevation tokens</span>`,
+    '<span class="token-pill text-m3-body-medium leading-m3-body-medium">Build source: tokens/figma-tokens.json</span>',
   ].join("");
-}
-
-function typographyScales(typographyVars) {
-  const scaleMap = new Map();
-
-  for (const token of typographyVars) {
-    const parts = token.name.replace(/^--typography-/, "").split("-");
-    const kind = parts.pop();
-    const key = parts.join("-");
-
-    if (!scaleMap.has(key)) {
-      scaleMap.set(key, {});
-    }
-
-    scaleMap.get(key)[kind] = token.value;
-  }
-
-  return Array.from(scaleMap.entries())
-    .map(([name, values]) => ({
-      name,
-      values,
-    }))
-    .sort((a, b) => a.name.localeCompare(b.name));
-}
-
-function formatTypographyName(rawName) {
-  const cleaned = rawName.replace(/^m3-/, "");
-  return cleaned
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-}
-
-function renderTypography(typographyVars) {
-  const list = document.querySelector("#typography-list");
-  if (!list) {
-    return;
-  }
-
-  const scales = typographyScales(typographyVars);
-  if (scales.length === 0) {
-    list.innerHTML =
-      '<p class="text-body-medium leading-body-medium">No typography tokens found.</p>';
-    return;
-  }
-
-  list.innerHTML = scales
-    .map(({ name, values }) => {
-      const fontSize = values.fontsize || "1rem";
-      const lineHeight = values.lineheight || "1.3";
-      const fontWeight = values.fontweight || "400";
-      const letterSpacing = values.letterspacing || "normal";
-      const displayName = formatTypographyName(name);
-
-      return `
-        <div class="typography-row py-4">
-          <p class="text-body-large leading-body-large" style="font-size:${escapeHtml(fontSize)}; line-height:${escapeHtml(lineHeight)}; font-weight:${escapeHtml(fontWeight)}; letter-spacing:${escapeHtml(letterSpacing)};">
-            ${escapeHtml(displayName)}
-          </p>
-          <p class="mt-2 text-body-medium leading-body-medium" style="font-size:${escapeHtml(fontSize)}; line-height:${escapeHtml(lineHeight)}; font-weight:${escapeHtml(fontWeight)}; letter-spacing:${escapeHtml(letterSpacing)};">
-            ${TYPOGRAPHY_SAMPLE_TEXT}
-          </p>
-          <p class="mt-3 text-body-medium leading-body-medium">
-            Size ${escapeHtml(fontSize)} · Line height ${escapeHtml(lineHeight)} · Weight ${escapeHtml(fontWeight)} · Letter spacing ${escapeHtml(letterSpacing)}
-          </p>
-        </div>
-      `;
-    })
-    .join("");
 }
 
 function renderLetterSpacing(letterSpacingVars) {
@@ -179,7 +110,7 @@ function renderLetterSpacing(letterSpacingVars) {
 
   if (filtered.length === 0) {
     list.innerHTML =
-      '<p class="text-body-medium leading-body-medium">No letter-spacing tokens found.</p>';
+      '<p class="text-m3-body-medium leading-m3-body-medium">No letter-spacing tokens found.</p>';
     return;
   }
 
@@ -189,10 +120,10 @@ function renderLetterSpacing(letterSpacingVars) {
       const utility = `tracking-${key}`;
       return `
         <div class="typography-row py-4">
-          <p class="text-body-medium leading-body-medium" style="letter-spacing:${escapeHtml(token.value)};">
+          <p class="text-m3-body-medium leading-m3-body-medium" style="letter-spacing:${escapeHtml(token.value)};">
             ${TYPOGRAPHY_SAMPLE_TEXT}
           </p>
-          <p class="mt-2 text-body-medium leading-body-medium">${escapeHtml(utility)} - ${escapeHtml(token.value)}</p>
+          <p class="mt-2 text-m3-body-medium leading-m3-body-medium">${escapeHtml(utility)} - ${escapeHtml(token.value)}</p>
         </div>
       `;
     })
@@ -238,7 +169,7 @@ function renderElevation(elevationSamples) {
 
   if (elevationSamples.length === 0) {
     const empty =
-      '<p class="text-body-medium leading-body-medium">No elevation tokens found.</p>';
+      '<p class="text-m3-body-medium leading-m3-body-medium">No elevation tokens found.</p>';
     grid.innerHTML = empty;
     strip.innerHTML = empty;
     return;
@@ -253,9 +184,9 @@ function renderElevation(elevationSamples) {
       return `
         <article class="elevation-card swatch rounded-2xl p-5">
           <div class="elevation-sample rounded-xl" style="box-shadow:${escapeHtml(sample.value)};"></div>
-          <p class="mt-4 text-label-large font-label-large">${escapeHtml(sample.label)}</p>
-          <p class="mt-1 text-body-medium leading-body-medium">${escapeHtml(sample.variable)}</p>
-          <p class="mt-2 text-body-medium leading-body-medium">${escapeHtml(sample.value)}</p>
+          <p class="mt-4 text-m3-label-large font-m3-label-large">${escapeHtml(sample.label)}</p>
+          <p class="mt-1 text-m3-body-medium leading-m3-body-medium">${escapeHtml(sample.variable)}</p>
+          <p class="mt-2 text-m3-body-medium leading-m3-body-medium">${escapeHtml(sample.value)}</p>
         </article>
       `;
     })
@@ -266,7 +197,7 @@ function renderElevation(elevationSamples) {
       (sample) => `
         <article class="elevation-strip-item rounded-2xl p-4">
           <div class="elevation-sample rounded-xl" style="box-shadow:${escapeHtml(sample.value)};"></div>
-          <p class="mt-3 text-label-large font-label-large">${escapeHtml(sample.label)}</p>
+          <p class="mt-3 text-m3-label-large font-m3-label-large">${escapeHtml(sample.label)}</p>
         </article>
       `,
     )
@@ -316,9 +247,9 @@ function renderMapping(colorVars, typographyVars, elevationSamples) {
     .map(
       ({ token, utility, value }) => `
         <tr class="token-row">
-          <td class="px-6 py-4 text-body-medium leading-body-medium">${escapeHtml(token)}</td>
-          <td class="px-6 py-4 text-body-medium leading-body-medium">${escapeHtml(utility)}</td>
-          <td class="px-6 py-4 text-body-medium leading-body-medium">${escapeHtml(value)}</td>
+          <td class="px-6 py-4 text-m3-body-medium leading-m3-body-medium">${escapeHtml(token)}</td>
+          <td class="px-6 py-4 text-m3-body-medium leading-m3-body-medium">${escapeHtml(utility)}</td>
+          <td class="px-6 py-4 text-m3-body-medium leading-m3-body-medium">${escapeHtml(value)}</td>
         </tr>
       `,
     )
@@ -362,7 +293,6 @@ function bootShowcase() {
     elevationSamples.length,
     letterSpacingVars,
   );
-  renderTypography(typographyVars);
   renderLetterSpacing(letterSpacingVars);
   renderElevation(elevationSamples);
   renderMapping(colorVars, typographyVars, elevationSamples);
