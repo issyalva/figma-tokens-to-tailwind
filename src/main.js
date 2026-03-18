@@ -289,15 +289,27 @@ function getElevationSamples() {
   }).filter((sample) => sample.value && sample.value !== "none");
 }
 
+function getElevationLevel(sample) {
+  const match = sample.key.match(/(\d+)$/);
+  return match ? Number.parseInt(match[1], 10) : 0;
+}
+
 function renderElevation(elevationSamples) {
   const grid = document.querySelector("#elevation-grid");
-  if (!grid) return;
+  const strip = document.querySelector("#elevation-strip");
+  if (!grid || !strip) return;
 
   if (elevationSamples.length === 0) {
-    grid.innerHTML =
+    const empty =
       '<p class="text-body-medium leading-body-medium">No elevation tokens found.</p>';
+    grid.innerHTML = empty;
+    strip.innerHTML = empty;
     return;
   }
+
+  const lightSamples = elevationSamples
+    .filter((sample) => !sample.key.startsWith("dark-"))
+    .sort((a, b) => getElevationLevel(a) - getElevationLevel(b));
 
   grid.innerHTML = elevationSamples
     .map((sample) => {
@@ -310,6 +322,17 @@ function renderElevation(elevationSamples) {
         </article>
       `;
     })
+    .join("");
+
+  strip.innerHTML = lightSamples
+    .map(
+      (sample) => `
+        <article class="elevation-strip-item rounded-2xl p-4">
+          <div class="elevation-sample rounded-xl" style="box-shadow:${escapeHtml(sample.value)};"></div>
+          <p class="mt-3 text-label-large font-label-large">${escapeHtml(sample.label)}</p>
+        </article>
+      `,
+    )
     .join("");
 }
 

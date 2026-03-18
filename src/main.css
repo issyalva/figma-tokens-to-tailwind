@@ -275,6 +275,12 @@ main {
   background: #ffffff;
 }
 
+.elevation-strip-item {
+  background: color-mix(in srgb, var(--showcase-primary) 2%, #ffffff);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--showcase-primary) 8%, #e4e7ec);
+}
+
 @media (max-width: 640px) {
   .hero-shell {
     box-shadow: 0 8px 20px rgb(29 27 32 / 0.06);
