@@ -18,19 +18,22 @@
 
 <body>
   <main class="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-14">
-    <header class="hero-shell rounded-3xl p-6 sm:p-10">
+    <header class="hero-shell p-6 sm:p-10">
       <div class="flex flex-wrap items-center justify-between gap-4">
-        <p class="badge text-m3-label-large font-m3-label-large">Live token pipeline</p>
-        <button id="theme-toggle" class="rounded-full px-4 py-2 text-m3-label-large font-m3-label-large" type="button"
-          aria-pressed="false">
+        <p class="badge text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large">Live
+          token pipeline</p>
+        <button id="theme-toggle"
+          class="px-4 py-2 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large"
+          type="button" aria-pressed="false">
           Switch to alt theme
         </button>
       </div>
 
-      <h1 class="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">
+      <h1
+        class="mt-6 text-m3-display-medium-emphasized leading-m3-display-medium-emphasized font-m3-display-medium-emphasized tracking-m3-display-medium-emphasized">
         Figma tokens to Tailwind showcase
       </h1>
-      <p class="mt-4 max-w-2xl text-m3-body-large leading-m3-body-large">
+      <p class="mt-4 max-w-2xl text-m3-body-large leading-m3-body-large font-m3-body-large tracking-m3-body-large">
         This page proves the pipeline from token JSON to generated Tailwind classes.
         Edit token values, run the build, and these styles update without touching component CSS.
       </p>
@@ -38,59 +41,72 @@
     </header>
 
     <section class="mt-8">
-      <article class="card-shell rounded-3xl p-6 sm:p-8">
-        <h2 class="text-2xl font-semibold">Component examples</h2>
-        <p class="mt-3 text-m3-body-large leading-m3-body-large">
+      <article class="card-shell p-6 sm:p-8">
+        <h2
+          class="text-m3-headline-small-emphasized leading-m3-headline-small-emphasized font-m3-headline-small-emphasized tracking-m3-headline-small-emphasized">
+          Component examples</h2>
+        <p class="mt-3 text-m3-body-large leading-m3-body-large font-m3-body-large tracking-m3-body-large">
           Filled, tonal, elevated, outlined, text, and field patterns styled by token variables.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <button class="button-filled-primary rounded-full px-5 py-2 text-m3-label-large font-m3-label-large"
+          <button
+            class="button-filled-primary px-5 py-2 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large"
             type="button">
             Filled button
           </button>
-          <button class="button-tonal-secondary rounded-full px-5 py-2 text-m3-label-large font-m3-label-large"
+          <button
+            class="button-tonal-secondary px-5 py-2 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large"
             type="button">
             Tonal button
           </button>
-          <button class="button-elevated rounded-full px-5 py-2 text-m3-label-large font-m3-label-large" type="button">
+          <button
+            class="button-elevated px-5 py-2 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large"
+            type="button">
             Elevated button
           </button>
-          <button class="button-outlined rounded-full px-5 py-2 text-m3-label-large font-m3-label-large" type="button">
+          <button
+            class="button-outlined px-5 py-2 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large"
+            type="button">
             Outlined button
           </button>
         </div>
 
         <div class="mt-6">
-          <p class="text-m3-label-large font-m3-label-large">Button sizes</p>
+          <h3
+            class="text-m3-title-large-emphasized leading-m3-title-large-emphasized font-m3-title-large-emphasized tracking-m3-title-large-emphasized">
+            Button sizes</h3>
           <div class="mt-3 flex flex-wrap items-end gap-3">
-            <button class="button-filled-primary button-size-small rounded-full" type="button">Filled Small</button>
-            <button class="button-filled-primary button-size-medium rounded-full" type="button">Filled Medium</button>
-            <button class="button-filled-primary button-size-large rounded-full" type="button">Filled Large</button>
+            <button class="button-filled-primary button-size-small" type="button">Filled Small</button>
+            <button class="button-filled-primary button-size-medium" type="button">Filled Medium</button>
+            <button class="button-filled-primary button-size-large" type="button">Filled Large</button>
           </div>
           <div class="mt-3 flex flex-wrap items-end gap-3">
-            <button class="button-tonal-secondary button-size-small rounded-full" type="button">Tonal Small</button>
-            <button class="button-tonal-secondary button-size-medium rounded-full" type="button">Tonal Medium</button>
-            <button class="button-tonal-secondary button-size-large rounded-full" type="button">Tonal Large</button>
+            <button class="button-tonal-secondary button-size-small" type="button">Tonal Small</button>
+            <button class="button-tonal-secondary button-size-medium" type="button">Tonal Medium</button>
+            <button class="button-tonal-secondary button-size-large" type="button">Tonal Large</button>
           </div>
         </div>
 
         <form class="mt-6 grid gap-4" action="#" method="post">
           <div>
-            <label class="block text-m3-label-large font-m3-label-large" for="name-input">Full name</label>
+            <label class="block text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large"
+              for="name-input">Full name</label>
             <input id="name-input"
-              class="field-filled mt-2 w-full rounded-xl px-4 py-3 text-m3-body-medium leading-m3-body-medium"
+              class="field-filled mt-2 w-full px-4 py-3 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium"
               type="text" placeholder="Jane Smith" />
           </div>
           <div>
-            <label class="block text-m3-label-large font-m3-label-large" for="email-input">Email</label>
+            <label class="block text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large"
+              for="email-input">Email</label>
             <input id="email-input"
-              class="field-filled mt-2 w-full rounded-xl px-4 py-3 text-m3-body-medium leading-m3-body-medium"
+              class="field-filled mt-2 w-full px-4 py-3 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium"
               type="email" placeholder="name@company.com" />
           </div>
           <div>
-            <label class="block text-m3-label-large font-m3-label-large" for="role-select">Role</label>
+            <label class="block text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large"
+              for="role-select">Role</label>
             <select id="role-select"
-              class="field-filled mt-2 w-full rounded-xl px-4 py-3 text-m3-body-medium leading-m3-body-medium">
+              class="field-filled mt-2 w-full px-4 py-3 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
               <option>Product Designer</option>
               <option>Frontend Engineer</option>
               <option>Design System Lead</option>
@@ -99,59 +115,80 @@
         </form>
 
         <div class="mt-8 space-y-4">
-          <h3 class="text-xl font-semibold">CSS-only hover states</h3>
-          <p class="text-m3-body-medium leading-m3-body-medium">
+          <h3
+            class="text-m3-title-large-emphasized leading-m3-title-large-emphasized font-m3-title-large-emphasized tracking-m3-title-large-emphasized">
+            CSS-only hover states</h3>
+          <p class="text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
             Interaction previews below are purely CSS-driven with hover and focus-visible styles.
           </p>
 
           <div class="component-example-grid mt-4">
-            <article class="card-filled rounded-2xl p-4">
-              <p class="text-m3-label-large font-m3-label-large">Filled Card</p>
-              <p class="mt-2 text-m3-body-medium leading-m3-body-medium">
+            <article class="card-filled p-4">
+              <h4
+                class="text-m3-title-medium-emphasized leading-m3-title-medium-emphasized font-m3-title-medium-emphasized tracking-m3-title-medium-emphasized">
+                Filled Card</h4>
+              <p class="mt-2 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
                 Hover raises the card using elevation tokens.
               </p>
-              <a class="link-inline mt-3 inline-flex text-m3-body-medium leading-m3-body-medium" href="#">Inline
+              <a class="link-inline mt-3 inline-flex text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium"
+                href="#">Inline
                 link</a>
             </article>
 
-            <article class="card-filled rounded-2xl p-4">
-              <p class="text-m3-label-large font-m3-label-large">Assist Chip</p>
-              <p class="mt-2 text-m3-body-medium leading-m3-body-medium">
+            <article class="card-filled p-4">
+              <h4
+                class="text-m3-title-medium-emphasized leading-m3-title-medium-emphasized font-m3-title-medium-emphasized tracking-m3-title-medium-emphasized">
+                Assist Chip</h4>
+              <p class="mt-2 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
                 Static surface with tokenized foreground/background contrast.
               </p>
-              <span class="chip-assist mt-3 inline-flex text-m3-label-large font-m3-label-large">Synced</span>
+              <span
+                class="chip-assist mt-3 inline-flex text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large">Synced</span>
             </article>
 
-            <article class="card-filled rounded-2xl p-4">
-              <p class="text-m3-label-large font-m3-label-large">Text Button</p>
-              <p class="mt-2 text-m3-body-medium leading-m3-body-medium">
+            <article class="card-filled p-4">
+              <h4
+                class="text-m3-title-medium-emphasized leading-m3-title-medium-emphasized font-m3-title-medium-emphasized tracking-m3-title-medium-emphasized">
+                Text Button</h4>
+              <p class="mt-2 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
                 Row highlight uses only :hover and :focus-visible.
               </p>
-              <button class="button-text mt-3 text-m3-label-large font-m3-label-large" type="button">Open</button>
+              <button
+                class="button-text mt-3 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large"
+                type="button">Open</button>
             </article>
           </div>
 
-          <div class="list-table mt-4 rounded-2xl">
-            <div class="list-row text-m3-body-medium leading-m3-body-medium" tabindex="0">Account settings</div>
-            <div class="list-row text-m3-body-medium leading-m3-body-medium" tabindex="0">Design tokens export</div>
-            <div class="list-row text-m3-body-medium leading-m3-body-medium" tabindex="0">Team access</div>
+          <div class="list-table mt-4">
+            <div class="list-row text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium"
+              tabindex="0">Account settings</div>
+            <div class="list-row text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium"
+              tabindex="0">Design tokens export</div>
+            <div class="list-row text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium"
+              tabindex="0">Team access</div>
           </div>
         </div>
       </article>
     </section>
 
     <section class="mt-8">
-      <article class="card-shell rounded-3xl p-6 sm:p-8">
-        <h2 class="text-2xl font-semibold">Elevation</h2>
-        <p class="mt-3 text-m3-body-medium leading-m3-body-medium">
+      <article class="card-shell p-6 sm:p-8">
+        <h2
+          class="text-m3-headline-small-emphasized leading-m3-headline-small-emphasized font-m3-headline-small-emphasized tracking-m3-headline-small-emphasized">
+          Elevation</h2>
+        <p class="mt-3 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
           <code>shadow-elevation-*</code> from composed <code>custom-shadow</code> tokens.
         </p>
 
-        <h3 class="mt-6 text-xl font-semibold">All elevation tokens</h3>
+        <h3
+          class="mt-6 text-m3-title-large-emphasized leading-m3-title-large-emphasized font-m3-title-large-emphasized tracking-m3-title-large-emphasized">
+          All elevation tokens</h3>
         <div id="elevation-grid" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
 
-        <h3 class="mt-8 text-xl font-semibold">Elevation scale strip</h3>
-        <p class="mt-2 text-m3-body-medium leading-m3-body-medium">
+        <h3
+          class="mt-8 text-m3-title-large-emphasized leading-m3-title-large-emphasized font-m3-title-large-emphasized tracking-m3-title-large-emphasized">
+          Elevation scale strip</h3>
+        <p class="mt-2 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
           Quick side-by-side read of levels 1 through 5.
         </p>
         <div id="elevation-strip" class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5" aria-live="polite"></div>
@@ -161,9 +198,11 @@
     </section>
 
     <section class="mt-8">
-      <article class="card-shell rounded-3xl p-6 sm:p-8">
-        <h2 class="text-2xl font-semibold">Typography scale</h2>
-        <p class="mt-3 text-m3-body-medium leading-m3-body-medium">
+      <article class="card-shell p-6 sm:p-8">
+        <h2
+          class="text-m3-headline-small-emphasized leading-m3-headline-small-emphasized font-m3-headline-small-emphasized tracking-m3-headline-small-emphasized">
+          Typography scale</h2>
+        <p class="mt-3 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
           Static markup using Tailwind token utilities.
         </p>
         <div class="mt-6 divide-y">
@@ -398,9 +437,11 @@
     </section>
 
     <section class="mt-8">
-      <article class="card-shell rounded-3xl p-6 sm:p-8">
-        <h2 class="text-2xl font-semibold">Letter spacing</h2>
-        <p class="mt-3 text-m3-body-medium leading-m3-body-medium">
+      <article class="card-shell p-6 sm:p-8">
+        <h2
+          class="text-m3-headline-small-emphasized leading-m3-headline-small-emphasized font-m3-headline-small-emphasized tracking-m3-headline-small-emphasized">
+          Letter spacing</h2>
+        <p class="mt-3 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
           <code>tracking-*</code> utilities from <code>--letter-spacing-*</code> tokens.
         </p>
         <div id="letter-spacing-list" class="mt-6 divide-y" aria-live="polite"></div>
@@ -408,14 +449,18 @@
     </section>
 
     <section class="mt-8">
-      <article class="card-shell rounded-3xl p-6 sm:p-8">
-        <h2 class="text-2xl font-semibold">Color swatches</h2>
-        <p class="mt-3 text-m3-body-medium leading-m3-body-medium">
+      <article class="card-shell p-6 sm:p-8">
+        <h2
+          class="text-m3-headline-small-emphasized leading-m3-headline-small-emphasized font-m3-headline-small-emphasized tracking-m3-headline-small-emphasized">
+          Color swatches</h2>
+        <p class="mt-3 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
           Grouped reference palettes rendered with Tailwind color utilities.
         </p>
         <div id="swatches-grid" class="mt-6 space-y-1">
           <div class="color-group-row">
-            <span class="color-group-label text-m3-body-medium leading-m3-body-medium">Ref · Primary</span>
+            <span
+              class="color-group-label text-m3-label-medium leading-m3-label-medium font-m3-label-medium tracking-m3-label-medium">Ref
+              · Primary</span>
             <div class="color-strip">
               <div class="color-chip bg-m3-ref-primary-primary0" title="m3-ref-primary-primary0"></div>
               <div class="color-chip bg-m3-ref-primary-primary5" title="m3-ref-primary-primary5"></div>
@@ -439,7 +484,9 @@
           </div>
 
           <div class="color-group-row">
-            <span class="color-group-label text-m3-body-medium leading-m3-body-medium">Ref · Secondary</span>
+            <span
+              class="color-group-label text-m3-label-medium leading-m3-label-medium font-m3-label-medium tracking-m3-label-medium">Ref
+              · Secondary</span>
             <div class="color-strip">
               <div class="color-chip bg-m3-ref-secondary-secondary0" title="m3-ref-secondary-secondary0"></div>
               <div class="color-chip bg-m3-ref-secondary-secondary5" title="m3-ref-secondary-secondary5"></div>
@@ -463,7 +510,9 @@
           </div>
 
           <div class="color-group-row">
-            <span class="color-group-label text-m3-body-medium leading-m3-body-medium">Ref · Tertiary</span>
+            <span
+              class="color-group-label text-m3-label-medium leading-m3-label-medium font-m3-label-medium tracking-m3-label-medium">Ref
+              · Tertiary</span>
             <div class="color-strip">
               <div class="color-chip bg-m3-ref-tertiary-tertiary0" title="m3-ref-tertiary-tertiary0"></div>
               <div class="color-chip bg-m3-ref-tertiary-tertiary5" title="m3-ref-tertiary-tertiary5"></div>
@@ -487,7 +536,9 @@
           </div>
 
           <div class="color-group-row">
-            <span class="color-group-label text-m3-body-medium leading-m3-body-medium">Ref · Error</span>
+            <span
+              class="color-group-label text-m3-label-medium leading-m3-label-medium font-m3-label-medium tracking-m3-label-medium">Ref
+              · Error</span>
             <div class="color-strip">
               <div class="color-chip bg-m3-ref-error-error0" title="m3-ref-error-error0"></div>
               <div class="color-chip bg-m3-ref-error-error5" title="m3-ref-error-error5"></div>
@@ -511,7 +562,9 @@
           </div>
 
           <div class="color-group-row">
-            <span class="color-group-label text-m3-body-medium leading-m3-body-medium">Ref · Neutral</span>
+            <span
+              class="color-group-label text-m3-label-medium leading-m3-label-medium font-m3-label-medium tracking-m3-label-medium">Ref
+              · Neutral</span>
             <div class="color-strip">
               <div class="color-chip bg-m3-ref-neutral-neutral0" title="m3-ref-neutral-neutral0"></div>
               <div class="color-chip bg-m3-ref-neutral-neutral4" title="m3-ref-neutral-neutral4"></div>
@@ -545,7 +598,9 @@
           </div>
 
           <div class="color-group-row">
-            <span class="color-group-label text-m3-body-medium leading-m3-body-medium">Ref · Neutral Variant</span>
+            <span
+              class="color-group-label text-m3-label-medium leading-m3-label-medium font-m3-label-medium tracking-m3-label-medium">Ref
+              · Neutral Variant</span>
             <div class="color-strip">
               <div class="color-chip bg-m3-ref-neutral-variant-neutral-variant0"
                 title="m3-ref-neutral-variant-neutral-variant0"></div>
@@ -589,15 +644,23 @@
       </article>
     </section>
 
-    <section class="mt-8 overflow-hidden rounded-3xl">
-      <h2 class="px-6 py-4 text-2xl font-semibold">Token to utility mapping</h2>
+    <section class="mt-8 overflow-hidden">
+      <h2
+        class="px-6 py-4 text-m3-headline-small-emphasized leading-m3-headline-small-emphasized font-m3-headline-small-emphasized tracking-m3-headline-small-emphasized">
+        Token to utility mapping</h2>
       <div class="overflow-x-auto">
         <table class="w-full min-w-170 text-left">
           <thead>
             <tr class="table-head-row">
-              <th class="px-6 py-3 text-m3-label-large font-m3-label-large">CSS token variable</th>
-              <th class="px-6 py-3 text-m3-label-large font-m3-label-large">Tailwind utility</th>
-              <th class="px-6 py-3 text-m3-label-large font-m3-label-large">Current value</th>
+              <th
+                class="px-6 py-3 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large">
+                CSS token variable</th>
+              <th
+                class="px-6 py-3 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large">
+                Tailwind utility</th>
+              <th
+                class="px-6 py-3 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large">
+                Current value</th>
             </tr>
           </thead>
           <tbody id="mapping-body"></tbody>
@@ -606,7 +669,7 @@
     </section>
 
     <noscript>
-      <p class="mt-6 rounded-2xl p-4 text-m3-body-medium leading-m3-body-medium">
+      <p class="mt-6 p-4 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">
         JavaScript is required to render live token discovery sections.
       </p>
     </noscript>

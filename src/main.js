@@ -91,11 +91,11 @@ function renderSummary(
   }
 
   summary.innerHTML = [
-    `<span class="token-pill text-m3-body-medium leading-m3-body-medium">${colorVars.length} color tokens</span>`,
-    `<span class="token-pill text-m3-body-medium leading-m3-body-medium">${typographyVars.length} typography tokens</span>`,
-    `<span class="token-pill text-m3-body-medium leading-m3-body-medium">${letterSpacingVars.length} letter-spacing tokens</span>`,
-    `<span class="token-pill text-m3-body-medium leading-m3-body-medium">${elevationCount} elevation tokens</span>`,
-    '<span class="token-pill text-m3-body-medium leading-m3-body-medium">Build source: tokens/figma-tokens.json</span>',
+    `<span class="token-pill text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${colorVars.length} color tokens</span>`,
+    `<span class="token-pill text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${typographyVars.length} typography tokens</span>`,
+    `<span class="token-pill text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${letterSpacingVars.length} letter-spacing tokens</span>`,
+    `<span class="token-pill text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${elevationCount} elevation tokens</span>`,
+    '<span class="token-pill text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">Build source: tokens/figma-tokens.json</span>',
   ].join("");
 }
 
@@ -110,7 +110,7 @@ function renderLetterSpacing(letterSpacingVars) {
 
   if (filtered.length === 0) {
     list.innerHTML =
-      '<p class="text-m3-body-medium leading-m3-body-medium">No letter-spacing tokens found.</p>';
+      '<p class="text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">No letter-spacing tokens found.</p>';
     return;
   }
 
@@ -120,10 +120,10 @@ function renderLetterSpacing(letterSpacingVars) {
       const utility = `tracking-${key}`;
       return `
         <div class="typography-row py-4">
-          <p class="text-m3-body-medium leading-m3-body-medium" style="letter-spacing:${escapeHtml(token.value)};">
+          <p class="text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium" style="letter-spacing:${escapeHtml(token.value)};">
             ${TYPOGRAPHY_SAMPLE_TEXT}
           </p>
-          <p class="mt-2 text-m3-body-medium leading-m3-body-medium">${escapeHtml(utility)} - ${escapeHtml(token.value)}</p>
+          <p class="mt-2 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${escapeHtml(utility)} - ${escapeHtml(token.value)}</p>
         </div>
       `;
     })
@@ -169,7 +169,7 @@ function renderElevation(elevationSamples) {
 
   if (elevationSamples.length === 0) {
     const empty =
-      '<p class="text-m3-body-medium leading-m3-body-medium">No elevation tokens found.</p>';
+      '<p class="text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">No elevation tokens found.</p>';
     grid.innerHTML = empty;
     strip.innerHTML = empty;
     return;
@@ -182,11 +182,11 @@ function renderElevation(elevationSamples) {
   grid.innerHTML = elevationSamples
     .map((sample) => {
       return `
-        <article class="elevation-card swatch rounded-2xl p-5">
-          <div class="elevation-sample rounded-xl" style="box-shadow:${escapeHtml(sample.value)};"></div>
-          <p class="mt-4 text-m3-label-large font-m3-label-large">${escapeHtml(sample.label)}</p>
-          <p class="mt-1 text-m3-body-medium leading-m3-body-medium">${escapeHtml(sample.variable)}</p>
-          <p class="mt-2 text-m3-body-medium leading-m3-body-medium">${escapeHtml(sample.value)}</p>
+        <article class="elevation-card swatch p-5">
+          <div class="elevation-sample" style="box-shadow:${escapeHtml(sample.value)};"></div>
+          <p class="mt-4 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large">${escapeHtml(sample.label)}</p>
+          <p class="mt-1 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${escapeHtml(sample.variable)}</p>
+          <p class="mt-2 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${escapeHtml(sample.value)}</p>
         </article>
       `;
     })
@@ -195,9 +195,9 @@ function renderElevation(elevationSamples) {
   strip.innerHTML = lightSamples
     .map(
       (sample) => `
-        <article class="elevation-strip-item rounded-2xl p-4">
-          <div class="elevation-sample rounded-xl" style="box-shadow:${escapeHtml(sample.value)};"></div>
-          <p class="mt-3 text-m3-label-large font-m3-label-large">${escapeHtml(sample.label)}</p>
+        <article class="elevation-strip-item p-4">
+          <div class="elevation-sample" style="box-shadow:${escapeHtml(sample.value)};"></div>
+          <p class="mt-3 text-m3-label-large leading-m3-label-large font-m3-label-large tracking-m3-label-large">${escapeHtml(sample.label)}</p>
         </article>
       `,
     )
@@ -247,9 +247,9 @@ function renderMapping(colorVars, typographyVars, elevationSamples) {
     .map(
       ({ token, utility, value }) => `
         <tr class="token-row">
-          <td class="px-6 py-4 text-m3-body-medium leading-m3-body-medium">${escapeHtml(token)}</td>
-          <td class="px-6 py-4 text-m3-body-medium leading-m3-body-medium">${escapeHtml(utility)}</td>
-          <td class="px-6 py-4 text-m3-body-medium leading-m3-body-medium">${escapeHtml(value)}</td>
+          <td class="px-6 py-4 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${escapeHtml(token)}</td>
+          <td class="px-6 py-4 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${escapeHtml(utility)}</td>
+          <td class="px-6 py-4 text-m3-body-medium leading-m3-body-medium font-m3-body-medium tracking-m3-body-medium">${escapeHtml(value)}</td>
         </tr>
       `,
     )

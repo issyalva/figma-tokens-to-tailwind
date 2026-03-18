@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap");
 @import "tailwindcss";
 @import "../tokens/build/tailwind.theme.css";
 @import "../tokens/build/tokens.css";
@@ -29,15 +29,9 @@
 
 body {
   margin: 0;
-  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  font-family: "Roboto", "Segoe UI", sans-serif;
   background: #ffffff;
   color: var(--showcase-on-surface);
-}
-
-h1,
-h2,
-.badge {
-  font-family: "Space Grotesk", "IBM Plex Sans", sans-serif;
 }
 
 main {
@@ -75,7 +69,6 @@ main {
   display: flex;
   flex: 1;
   overflow: hidden;
-  border-radius: 0;
 }
 
 .color-chip {
@@ -93,11 +86,8 @@ main {
 .badge {
   display: inline-flex;
   align-items: center;
-  border-radius: 999px;
   border: 0;
   padding: 0.4rem 0.85rem;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
   background: color-mix(in srgb, var(--showcase-primary) 12%, #ffffff);
 }
 
@@ -184,6 +174,7 @@ main {
     font-size: var(--text-m3-label-small, 0.6875rem);
     line-height: var(--leading-m3-label-small, 1rem);
     font-weight: var(--font-weight-m3-label-small, 500);
+    letter-spacing: var(--tracking-m3-label-small, 0.03125rem);
   }
 
   .button-size-medium {
@@ -191,6 +182,7 @@ main {
     font-size: var(--text-m3-label-medium, 0.75rem);
     line-height: var(--leading-m3-label-medium, 1rem);
     font-weight: var(--font-weight-m3-label-medium, 500);
+    letter-spacing: var(--tracking-m3-label-medium, 0.03125rem);
   }
 
   .button-size-large {
@@ -198,6 +190,7 @@ main {
     font-size: var(--text-m3-label-large, 0.875rem);
     line-height: var(--leading-m3-label-large, 1.25rem);
     font-weight: var(--font-weight-m3-label-large, 500);
+    letter-spacing: var(--tracking-m3-label-large, 0.00625rem);
   }
 
   #theme-toggle {
@@ -256,7 +249,6 @@ main {
   }
 
   .chip-assist {
-    border-radius: 999px;
     padding: 0.3rem 0.75rem;
     background: color-mix(in srgb, var(--showcase-primary) 16%, #ffffff);
     color: color-mix(in srgb, var(--showcase-primary) 72%, #0f172a);
@@ -264,7 +256,6 @@ main {
 
   .button-text {
     border: 0;
-    border-radius: 999px;
     padding: 0.35rem 0.8rem;
     background: color-mix(in srgb, var(--showcase-primary) 10%, #ffffff);
     color: var(--showcase-on-surface);
@@ -316,7 +307,6 @@ main {
 .token-pill {
   display: inline-flex;
   align-items: center;
-  border-radius: 999px;
   padding: 0.3rem 0.75rem;
   background: color-mix(in srgb, var(--showcase-primary) 10%, #ffffff);
 }
